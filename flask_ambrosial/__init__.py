@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Initialization of the Flask application and its extensions."""
 
-from flask import Flask
+from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_babel import Babel
 from flask_ambrosial.config import Config
 
 # Initialize SQLAlchemy database object
@@ -22,6 +23,8 @@ login_manager.login_message_category = 'info'  # Set login message category
 # Initialize Flask-Mail for sending emails
 mail = Mail()
 
+# Initialize Flask-Babel for internationalization
+babel = Babel()
 
 def create_app(config_class=Config):
     """Create and configure the Flask application.
@@ -36,13 +39,14 @@ def create_app(config_class=Config):
     # Create the Flask application instance
     app = Flask(__name__)
     # Load configuration from the provided Config class
-    app.config.from_object(Config)
+    app.config.from_object(config_class)
 
     # Initialize extensions with the Flask application instance
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+    babel.init_app(app, locale_selector=get_locale)
 
     # Import blueprints and register them with the app
     from flask_ambrosial.users.routes import users
@@ -57,3 +61,7 @@ def create_app(config_class=Config):
     app.register_blueprint(api_bp)  # Register API blueprint
 
     return app
+
+def get_locale():
+    """Determine the best match for the user's preferred language."""
+    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
