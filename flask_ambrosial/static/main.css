@@ -1,0 +1,98 @@
+/* CSS styles for the Flask app */
+
+/* General body styling */
+body {
+    background: #fafafa;  /* Background color */
+    color: #333333;       /* Text color */
+    margin-top: 5rem;     /* Margin top for content */
+}
+
+/* Headings styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;  /* Heading text color */
+}
+
+/* Background color for specific section */
+.bg-steel {
+    background-color: #702963;  /* Dark background color */
+}
+
+/* Styling for navigation links */
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;  /* Navigation link text color */
+}
+
+/* Hover effect for navigation links */
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;  /* Hovered navigation link text color */
+}
+
+/* Active link styling */
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;  /* Font weight for active link */
+}
+
+/* Styling for content sections */
+.content-section {
+    background: #ffffff;       /* Background color */
+    padding: 10px 20px;        /* Padding inside the section */
+    border: 1px solid #dddddd; /* Border color and width */
+    border-radius: 3px;        /* Border radius for rounded corners */
+    margin-bottom: 20px;       /* Bottom margin */
+}
+
+/* Styling for article titles */
+.article-title {
+    color: #444444;  /* Article title text color */
+}
+
+/* Hover effect for article titles */
+a.article-title:hover {
+    color: #428bca;  /* Hovered article title text color */
+    text-decoration: none;  /* Remove underline on hover */
+}
+
+/* Styling for article content */
+.article-content {
+    white-space: pre-line;  /* Preserve line breaks */
+}
+
+/* Styling for article images */
+.article-img {
+    height: 65px;    /* Height of the image */
+    width: 65px;     /* Width of the image */
+    margin-right: 16px;  /* Right margin */
+}
+
+/* Styling for article metadata */
+.article-metadata {
+    padding-bottom: 1px;  /* Padding at the bottom */
+    margin-bottom: 4px;   /* Bottom margin */
+    border-bottom: 1px solid #e3e3e3;  /* Border color and width */
+}
+
+/* Hover effect for article metadata links */
+.article-metadata a:hover {
+    color: #333;  /* Hovered metadata link text color */
+    text-decoration: none;  /* Remove underline on hover */
+}
+
+/* Styling for SVG icons in articles */
+.article-svg {
+    width: 25px;    /* Width of the SVG icon */
+    height: 25px;   /* Height of the SVG icon */
+    vertical-align: middle;  /* Vertical alignment */
+}
+
+/* Styling for user account images */
+.account-img {
+    height: 125px;   /* Height of the image */
+    width: 125px;    /* Width of the image */
+    margin-right: 20px;   /* Right margin */
+    margin-bottom: 16px;  /* Bottom margin */
+}
+
+/* Styling for account heading */
+.account-heading {
+    font-size: 2.5rem;  /* Font size for account heading */
+}
