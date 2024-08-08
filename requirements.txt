@@ -5,6 +5,10 @@ click
 dnspython
 email_validator
 Flask
+<<<<<<< HEAD
+=======
+Flask-Babel
+>>>>>>> f50ab4d (Update files)
 Flask-Bcrypt
 Flask-Login
 Flask-Mail

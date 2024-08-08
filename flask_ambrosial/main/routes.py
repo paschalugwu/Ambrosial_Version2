@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Blueprint, render_template, url_for, request
+from flask import Blueprint, render_template, url_for, request, redirect, session, current_app
 from flask_ambrosial.models import Post
 
 # Create a Blueprint for the main routes
@@ -33,3 +33,19 @@ def about():
         str: Rendered template for the about page.
     """
     return render_template('about.html', title='About')
+
+
+@main.route("/set_language/<language>")
+def set_language(language):
+    """Set the user's preferred language.
+
+    Args:
+        language (str): The language code to set as the preferred language.
+
+    Returns:
+        werkzeug.wrappers.Response: Redirect to the previous page.
+    """
+    if language not in current_app.config['LANGUAGES']:
+        language = current_app.config['BABEL_DEFAULT_LOCALE']
+    session['language'] = language
+    return redirect(request.referrer or url_for('main.home'))

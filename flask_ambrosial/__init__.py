@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """Initialization of the Flask application and its extensions."""
 
+<<<<<<< HEAD
 from flask import Flask, request, current_app
+=======
+from flask import Flask, request, session
+>>>>>>> f50ab4d (Update files)
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
@@ -23,7 +27,11 @@ login_manager.login_message_category = 'info'  # Set login message category
 # Initialize Flask-Mail for sending emails
 mail = Mail()
 
+<<<<<<< HEAD
 # Initialize Flask-Babel for internationalization
+=======
+# Initialize Flask-Babel for internationalization (i18n)
+>>>>>>> f50ab4d (Update files)
 babel = Babel()
 
 def create_app(config_class=Config):
@@ -46,7 +54,11 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+<<<<<<< HEAD
     babel.init_app(app, locale_selector=get_locale)
+=======
+    babel.init_app(app, locale_selector=get_locale)  # Updated initialization
+>>>>>>> f50ab4d (Update files)
 
     # Import blueprints and register them with the app
     from flask_ambrosial.users.routes import users
@@ -63,5 +75,14 @@ def create_app(config_class=Config):
     return app
 
 def get_locale():
+<<<<<<< HEAD
     """Determine the best match for the user's preferred language."""
     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
+=======
+    """Determine the best match with the supported languages.
+
+    Returns:
+        str: The language code of the selected language.
+    """
+    return session.get('language', request.accept_languages.best_match(current_app.config['LANGUAGES']))
+>>>>>>> f50ab4d (Update files)

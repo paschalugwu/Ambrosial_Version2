@@ -45,6 +45,21 @@
                 <a class="nav-item nav-link" href="{{ url_for('users.register') }}">{{ _('Register') }}</a>
               {% endif %}
             </div>
+
+            <!-- Language selection dropdown -->
+            <div class="navbar-nav ml-auto">
+              <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Language
+                </a>
+                <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                  {% for lang in config.LANGUAGES %}
+                    <a class="dropdown-item" href="{{ url_for('main.set_language', language=lang) }}">{{ lang }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </nav>
