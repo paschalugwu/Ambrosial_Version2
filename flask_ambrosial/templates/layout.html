@@ -35,31 +35,28 @@
               <a class="nav-item nav-link" href="{{ url_for('main.about') }}">{{ _('About') }}</a>
             </div>
             <!-- Navbar Right Side, dynamic links based on user authentication -->
-            <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">{{ _('New Post') }}</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.account') }}">{{ _('Account') }}</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">{{ _('Logout') }}</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('users.login') }}">{{ _('Login') }}</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.register') }}">{{ _('Register') }}</a>
-              {% endif %}
-            </div>
-
-            <!-- Language selection dropdown -->
-            <div class="navbar-nav ml-auto">
-              <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Language
-                </a>
-                <div class="dropdown-menu" aria-labelledby="languageDropdown">
-                  {% for lang in config.LANGUAGES %}
-                    <a class="dropdown-item" href="{{ url_for('main.set_language', language=lang) }}">{{ lang }}</a>
-                  {% endfor %}
+            <div class="navbar-nav ml-auto d-flex justify-content-end w-50">
+                {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">{{ _('New Post') }}</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.account') }}">{{ _('Account') }}</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">{{ _('Logout') }}</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{{ url_for('users.login') }}">{{ _('Login') }}</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.register') }}">{{ _('Register') }}</a>
+                {% endif %}
+                
+                <!-- Language selection dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Language
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                        <!-- Directly link to the /setlang route with the language parameter -->
+                        <a class="dropdown-item" href="/setlang?lang=en">English</a>
+                        <a class="dropdown-item" href="/setlang?lang=fr">Français</a>
+                    </div>
                 </div>
-              </div>
             </div>
-
           </div>
         </div>
       </nav>

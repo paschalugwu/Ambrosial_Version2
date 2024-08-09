@@ -2,10 +2,21 @@
 
 from flask import Blueprint, render_template, url_for, request, redirect, session, current_app
 from flask_ambrosial.models import Post
+from flask_babel import refresh
+from flask_ambrosial import get_locale
 
 # Create a Blueprint for the main routes
 main = Blueprint('main', __name__)
 
+
+@main.context_processor
+def inject_locale():
+    """Inject the get_locale function into the template context.
+
+    Returns:
+        dict: A dictionary containing the get_locale function.
+    """
+    return {'get_locale': get_locale}
 
 @main.route("/")
 @main.route("/home")
@@ -34,18 +45,12 @@ def about():
     """
     return render_template('about.html', title='About')
 
-
-@main.route("/set_language/<language>")
-def set_language(language):
-    """Set the user's preferred language.
-
-    Args:
-        language (str): The language code to set as the preferred language.
-
-    Returns:
-        werkzeug.wrappers.Response: Redirect to the previous page.
-    """
-    if language not in current_app.config['LANGUAGES']:
-        language = current_app.config['BABEL_DEFAULT_LOCALE']
-    session['language'] = language
+@main.route('/setlang')
+def setlang():
+    lang = request.args.get('lang', 'en')
+    session['lang'] = lang
     return redirect(request.referrer or url_for('main.home'))
+
+@main.context_processor
+def inject_locale():
+    return {'get_locale': get_locale}

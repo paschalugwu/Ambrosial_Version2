@@ -96,3 +96,14 @@ a.article-title:hover {
 .account-heading {
     font-size: 2.5rem;  /* Font size for account heading */
 }
+
+.navbar-nav.ml-auto {
+    width: 50%; /* Adjust width if needed */
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center;
+}
+
+.navbar-nav.ml-auto .nav-item {
+    margin-left: 10px; /* Adjust this value for desired spacing */
+}

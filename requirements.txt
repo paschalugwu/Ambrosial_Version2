@@ -5,10 +5,7 @@ click
 dnspython
 email_validator
 Flask
-<<<<<<< HEAD
-=======
 Flask-Babel
->>>>>>> f50ab4d (Update files)
 Flask-Bcrypt
 Flask-Login
 Flask-Mail
@@ -29,3 +26,5 @@ SQLAlchemy
 typing_extensions
 Werkzeug
 WTForms
+googletrans==4.0.0-rc1
+polib

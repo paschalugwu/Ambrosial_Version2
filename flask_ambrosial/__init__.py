@@ -63,9 +63,14 @@ def create_app(config_class=Config):
     return app
 
 def get_locale():
-    """Determine the best match with the supported languages.
-
-    Returns:
-        str: The language code of the selected language.
-    """
-    return session.get('language', request.accept_languages.best_match(current_app.config['LANGUAGES']))
+    # Check if the language query parameter is set and valid
+    if 'lang' in request.args:
+        lang = request.args.get('lang')
+        if lang in ['en', 'fr']:
+            session['lang'] = lang
+            return session['lang']
+    # If not set via query, check if we have it stored in the session
+    elif 'lang' in session:
+        return session.get('lang')
+    # Otherwise, use the browser's preferred language
+    return request.accept_languages.best_match(['en', 'fr'])

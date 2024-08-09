@@ -1,18 +1,13 @@
-# French translations for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-08 17:18+0000\n"
-"PO-Revision-Date: 2024-08-08 17:20+0000\n"
+"POT-Creation-Date: 2024-08-09 17:21+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
-"Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,441 +15,418 @@ msgstr ""
 
 #: myenv/lib/python3.10/site-packages/click/_termui_impl.py:518
 msgid "{editor}: Editing failed"
-msgstr ""
+msgstr "{éditeur}: l'édition a échoué"
 
 #: myenv/lib/python3.10/site-packages/click/_termui_impl.py:522
 msgid "{editor}: Editing failed: {e}"
-msgstr ""
+msgstr "{éditeur}: l'édition a échoué: {e}"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1120
 msgid "Aborted!"
-msgstr ""
+msgstr "Aborted!"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1309
 #: myenv/lib/python3.10/site-packages/click/decorators.py:559
 msgid "Show this message and exit."
-msgstr ""
+msgstr "Montrez ce message et sortez."
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1340
 #: myenv/lib/python3.10/site-packages/click/core.py:1370
 msgid "(Deprecated) {text}"
-msgstr ""
+msgstr "(Déprécié) {texte}"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1387
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1415
 msgid "Got unexpected extra argument ({args})"
-msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "J'ai un argument supplémentaire inattendu ({args})"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1428
 msgid "DeprecationWarning: The command {name!r} is deprecated."
-msgstr ""
+msgstr "DePRecationWarning: la commande {name! R} est dépréciée."
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1636
 msgid "Commands"
-msgstr ""
+msgstr "Commandes"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1668
 msgid "Missing command."
-msgstr ""
+msgstr "Commande manquante."
 
 #: myenv/lib/python3.10/site-packages/click/core.py:1746
 msgid "No such command {name!r}."
-msgstr ""
+msgstr "Pas de telle commande {name! R}."
 
 #: myenv/lib/python3.10/site-packages/click/core.py:2310
 msgid "Value must be an iterable."
-msgstr ""
+msgstr "La valeur doit être un itérable."
 
 #: myenv/lib/python3.10/site-packages/click/core.py:2333
 msgid "Takes {nargs} values but 1 was given."
-msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Prend {nargs} valeurs mais 1 a été donné."
 
 #: myenv/lib/python3.10/site-packages/click/core.py:2778
 msgid "env var: {var}"
-msgstr ""
+msgstr "Env a: {var}"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:2808
 msgid "(dynamic)"
-msgstr ""
+msgstr "(dynamique)"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:2821
 msgid "default: {default}"
-msgstr ""
+msgstr "par défaut: {par défaut}"
 
 #: myenv/lib/python3.10/site-packages/click/core.py:2834
 msgid "required"
-msgstr ""
+msgstr "requis"
 
 #: myenv/lib/python3.10/site-packages/click/decorators.py:465
-#, python-format
 msgid "%(prog)s, version %(version)s"
-msgstr ""
+msgstr "% (prog) s, version% (version) s"
 
 #: myenv/lib/python3.10/site-packages/click/decorators.py:528
 msgid "Show the version and exit."
-msgstr ""
+msgstr "Affichez la version et sortez."
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:44
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:80
 msgid "Error: {message}"
-msgstr ""
+msgstr "Erreur: {message}"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:72
 msgid "Try '{command} {option}' for help."
-msgstr ""
+msgstr "Essayez '{commande} {option}' pour obtenir de l'aide."
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:121
 msgid "Invalid value: {message}"
-msgstr ""
+msgstr "Valeur non valide: {message}"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:123
 msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
+msgstr "Valeur non valide pour {param_hint}: {message}"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:179
 msgid "Missing argument"
-msgstr ""
+msgstr "Argument manquant"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:181
 msgid "Missing option"
-msgstr ""
+msgstr "Option manquante"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:183
 msgid "Missing parameter"
-msgstr ""
+msgstr "Paramètre manquant"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:185
 msgid "Missing {param_type}"
-msgstr ""
+msgstr "Manquant {param_type}"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:192
 msgid "Missing parameter: {param_name}"
-msgstr ""
+msgstr "Paramètre manquant: {param_name}"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:212
 msgid "No such option: {name}"
-msgstr ""
+msgstr "Aucune option de ce type: {nom}"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:226
 msgid "Did you mean {possibility}?"
-msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Vouliez-vous dire {possibilité}?"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:262
 msgid "unknown error"
-msgstr ""
+msgstr "erreur inconnue"
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:269
 msgid "Could not open file {filename!r}: {message}"
-msgstr ""
+msgstr "Impossible d'ouvrir le fichier {nom de fichier! R}: {message}"
+
+#: myenv/lib/python3.10/site-packages/click/formatting.py:156
+msgid "Usage:"
+msgstr "Usage:"
 
 #: myenv/lib/python3.10/site-packages/click/parser.py:231
 msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
+msgstr "Argument {name! R} prend des valeurs {nargs}."
 
 #: myenv/lib/python3.10/site-packages/click/parser.py:413
 msgid "Option {name!r} does not take a value."
-msgstr ""
+msgstr "L'option {name! R} ne prend pas de valeur."
 
 #: myenv/lib/python3.10/site-packages/click/parser.py:473
 msgid "Option {name!r} requires an argument."
-msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "L'option {name! R} nécessite un argument."
 
 #: myenv/lib/python3.10/site-packages/click/shell_completion.py:318
 msgid "Shell completion is not supported for Bash versions older than 4.4."
 msgstr ""
+"L'achèvement de la coquille n'est pas pris en charge pour les versions bash "
+"de plus de 4,4."
 
 #: myenv/lib/python3.10/site-packages/click/shell_completion.py:326
 msgid "Couldn't detect Bash version, shell completion is not supported."
 msgstr ""
+"Impossible de détecter la version bash, l'achèvement de la coquille n'est "
+"pas pris en charge."
 
 #: myenv/lib/python3.10/site-packages/click/termui.py:158
 msgid "Repeat for confirmation"
-msgstr ""
+msgstr "Répéter pour la confirmation"
 
 #: myenv/lib/python3.10/site-packages/click/termui.py:174
 msgid "Error: The value you entered was invalid."
-msgstr ""
+msgstr "Erreur: la valeur que vous avez saisie n'était pas valide."
 
 #: myenv/lib/python3.10/site-packages/click/termui.py:176
 msgid "Error: {e.message}"
-msgstr ""
+msgstr "Erreur: {E.Message}"
 
 #: myenv/lib/python3.10/site-packages/click/termui.py:187
 msgid "Error: The two entered values do not match."
-msgstr ""
+msgstr "Erreur: les deux valeurs entrées ne correspondent pas."
 
 #: myenv/lib/python3.10/site-packages/click/termui.py:243
 msgid "Error: invalid input"
-msgstr ""
+msgstr "Erreur: entrée non valide"
 
 #: myenv/lib/python3.10/site-packages/click/termui.py:773
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Appuyez sur n'importe quelle touche pour continuer ..."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:266
 msgid ""
 "Choose from:\n"
 "\t{choices}"
 msgstr ""
+"Choose from:\n"
+"\t{choices}"
 
 #: myenv/lib/python3.10/site-packages/click/types.py:300
 msgid "{value!r} is not {choice}."
-msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "{valeur! R} n'est pas {choix}."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:394
 msgid "{value!r} does not match the format {format}."
-msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "{Value! R} ne correspond pas au format {format}."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:414
 msgid "{value!r} is not a valid {number_type}."
-msgstr ""
+msgstr "{Value! R} n'est pas un {numéro_type} valide."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:470
 msgid "{value} is not in the range {range}."
-msgstr ""
+msgstr "{valeur} n'est pas dans la plage {range}."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:611
 msgid "{value!r} is not a valid boolean."
-msgstr ""
+msgstr "{Value! R} n'est pas un booléen valide."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:635
 msgid "{value!r} is not a valid UUID."
-msgstr ""
+msgstr "{Value! R} n'est pas un UUID valide."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:822
 msgid "file"
-msgstr ""
+msgstr "déposer"
 
 #: myenv/lib/python3.10/site-packages/click/types.py:824
 msgid "directory"
-msgstr ""
+msgstr "annuaire"
 
 #: myenv/lib/python3.10/site-packages/click/types.py:826
 msgid "path"
-msgstr ""
+msgstr "chemin"
 
 #: myenv/lib/python3.10/site-packages/click/types.py:877
 msgid "{name} {filename!r} does not exist."
-msgstr ""
+msgstr "{nom} {nom de fichier! R} n'existe pas."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:886
 msgid "{name} {filename!r} is a file."
-msgstr ""
+msgstr "{name} {nom de fichier! R} est un fichier."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:894
 msgid "{name} '{filename}' is a directory."
-msgstr ""
+msgstr "{name} '{filename}' est un répertoire."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:903
 msgid "{name} {filename!r} is not readable."
-msgstr ""
+msgstr "{nom} {nom de fichier! R} n'est pas lisible."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:912
 msgid "{name} {filename!r} is not writable."
-msgstr ""
+msgstr "{name} {nom de fichier! R} n'est pas écrite."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:921
 msgid "{name} {filename!r} is not executable."
-msgstr ""
+msgstr "{nom} {nom de fichier! R} n'est pas exécutable."
 
 #: myenv/lib/python3.10/site-packages/click/types.py:987
 msgid "{len_type} values are required, but {len_value} was given."
-msgid_plural "{len_type} values are required, but {len_value} were given."
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
+"Les valeurs {Len_Type} sont nécessaires, mais {Len_value} a été donné."
 
 #: myenv/lib/python3.10/site-packages/flask_wtf/file.py:55
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:293
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:323
 msgid "This field is required."
-msgstr ""
+msgstr "Ce champ est obligatoire."
 
 #: myenv/lib/python3.10/site-packages/flask_wtf/file.py:93
 msgid "File does not have an approved extension: {extensions}"
-msgstr ""
+msgstr "Le fichier n'a pas d'extension approuvée: {extensions}"
 
 #: myenv/lib/python3.10/site-packages/flask_wtf/file.py:101
 msgid "File does not have an approved extension."
-msgstr ""
+msgstr "Le fichier n'a pas d'extension approuvée."
 
 #: myenv/lib/python3.10/site-packages/flask_wtf/file.py:140
 msgid "File must be between {min_size} and {max_size} bytes."
-msgstr ""
+msgstr "Le fichier doit être entre {min_size} et {max_size} octets."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:86
-#, python-format
 msgid "Invalid field name '%s'."
-msgstr ""
+msgstr "Nom de champ non valide «% s»."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:99
-#, python-format
 msgid "Field must be equal to %(other_name)s."
-msgstr ""
+msgstr "Le champ doit être égal à% (autres_name) s."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:145
-#, python-format
 msgid "Field must be at least %(min)d character long."
-msgid_plural "Field must be at least %(min)d characters long."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Le champ doit être long au moins% (min) d."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:151
-#, python-format
 msgid "Field cannot be longer than %(max)d character."
-msgid_plural "Field cannot be longer than %(max)d characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Le champ ne peut pas être plus long que le caractère% (max) D."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:157
-#, python-format
 msgid "Field must be exactly %(max)d character long."
-msgid_plural "Field must be exactly %(max)d characters long."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Le champ doit être exactement% (max) D le caractère long."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:163
-#, python-format
 msgid "Field must be between %(min)d and %(max)d characters long."
-msgstr ""
+msgstr "Le champ doit être entre les caractères% (min) d et% (max) d."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:216
-#, python-format
 msgid "Number must be at least %(min)s."
-msgstr ""
+msgstr "Le nombre doit être au moins% (min) s."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:219
-#, python-format
 msgid "Number must be at most %(max)s."
-msgstr ""
+msgstr "Le nombre doit être au maximum en% (max) s."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:222
-#, python-format
 msgid "Number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Le nombre doit être compris entre% (min) s et% (max) s."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:358
 msgid "Invalid input."
-msgstr ""
+msgstr "Entrée non valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:422
 msgid "Invalid email address."
-msgstr ""
+msgstr "Adresse e-mail non valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:460
 msgid "Invalid IP address."
-msgstr ""
+msgstr "Adresse IP non valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:503
 msgid "Invalid Mac address."
-msgstr ""
+msgstr "Adresse MAC non valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:540
 msgid "Invalid URL."
-msgstr ""
+msgstr "URL non valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:561
 msgid "Invalid UUID."
-msgstr ""
+msgstr "Invalide uuid."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:594
-#, python-format
 msgid "Invalid value, must be one of: %(values)s."
-msgstr ""
+msgstr "Valeur non valide, doit être l'une des:% (valeurs) s."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:629
-#, python-format
 msgid "Invalid value, can't be any of: %(values)s."
-msgstr ""
+msgstr "Valeur non valide, ne peut être pas:% (valeurs) s."
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:698
 msgid "This field cannot be edited"
-msgstr ""
+msgstr "Ce champ ne peut pas être modifié"
 
 #: myenv/lib/python3.10/site-packages/wtforms/validators.py:714
 msgid "This field is disabled and cannot have a value"
-msgstr ""
+msgstr "Ce champ est désactivé et ne peut pas avoir de valeur"
 
 #: myenv/lib/python3.10/site-packages/wtforms/csrf/core.py:96
 msgid "Invalid CSRF Token."
-msgstr ""
+msgstr "Jeton CSRF non valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/csrf/session.py:63
 msgid "CSRF token missing."
-msgstr ""
+msgstr "Jeton CSRF manquant."
 
 #: myenv/lib/python3.10/site-packages/wtforms/csrf/session.py:71
 msgid "CSRF failed."
-msgstr ""
+msgstr "CSRF a échoué."
 
 #: myenv/lib/python3.10/site-packages/wtforms/csrf/session.py:76
 msgid "CSRF token expired."
-msgstr ""
+msgstr "Le jeton CSRF a expiré."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/choices.py:142
 msgid "Invalid Choice: could not coerce."
-msgstr ""
+msgstr "Choix invalide: ne pouvait pas contraindre."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/choices.py:149
 #: myenv/lib/python3.10/site-packages/wtforms/fields/choices.py:203
 msgid "Choices cannot be None."
-msgstr ""
+msgstr "Les choix ne peuvent pas être personnels."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/choices.py:155
 msgid "Not a valid choice."
-msgstr ""
+msgstr "Pas un choix valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/choices.py:193
 msgid "Invalid choice(s): one or more data inputs could not be coerced."
 msgstr ""
+"Choix invalide (s): une ou plusieurs entrées de données n'ont pas pu être "
+"contraints."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/choices.py:214
-#, python-format
 msgid "'%(value)s' is not a valid choice for this field."
-msgid_plural "'%(value)s' are not valid choices for this field."
-msgstr[0] ""
-msgstr[1] ""
+msgstr "«% (valeur) s» n'est pas un choix valable pour ce champ."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/datetime.py:51
 msgid "Not a valid datetime value."
-msgstr ""
+msgstr "Pas une valeur de DateTime valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/datetime.py:77
 msgid "Not a valid date value."
-msgstr ""
+msgstr "Pas une valeur de date valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/datetime.py:103
 msgid "Not a valid time value."
-msgstr ""
+msgstr "Pas une valeur de temps valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/datetime.py:148
 msgid "Not a valid week value."
-msgstr ""
+msgstr "Pas une valeur de semaine valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/numeric.py:82
 #: myenv/lib/python3.10/site-packages/wtforms/fields/numeric.py:92
 msgid "Not a valid integer value."
-msgstr ""
+msgstr "Pas une valeur entière valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/numeric.py:168
 msgid "Not a valid decimal value."
-msgstr ""
+msgstr "Pas une valeur décimale valide."
 
 #: myenv/lib/python3.10/site-packages/wtforms/fields/numeric.py:197
 msgid "Not a valid float value."
-msgstr ""
-
+msgstr "Pas une valeur flottante valide."
