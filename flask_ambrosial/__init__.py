@@ -6,8 +6,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from flask_babel import Babel
 from flask_ambrosial.config import Config
+from flask_babel import Babel
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Initialize SQLAlchemy database object
 db = SQLAlchemy()
@@ -39,7 +43,7 @@ def create_app(config_class=Config):
     # Create the Flask application instance
     app = Flask(__name__)
     # Load configuration from the provided Config class
-    app.config.from_object(config_class)
+    app.config.from_object(Config)
 
     # Initialize extensions with the Flask application instance
     db.init_app(app)
@@ -47,6 +51,16 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
+
+    # Register context processor globally
+    @app.context_processor
+    def inject_locale():
+        """Inject the get_locale function into the template context.
+
+        Returns:
+            dict: A dictionary containing the get_locale function.
+        """
+        return {'get_locale': get_locale}
 
     # Import blueprints and register them with the app
     from flask_ambrosial.users.routes import users
@@ -63,14 +77,19 @@ def create_app(config_class=Config):
     return app
 
 def get_locale():
+    logging.debug("Determining locale...")
     # Check if the language query parameter is set and valid
     if 'lang' in request.args:
         lang = request.args.get('lang')
+        logging.debug(f"Language from query parameter: {lang}")
         if lang in ['en', 'fr']:
             session['lang'] = lang
             return session['lang']
     # If not set via query, check if we have it stored in the session
     elif 'lang' in session:
+        logging.debug(f"Language from session: {session.get('lang')}")
         return session.get('lang')
     # Otherwise, use the browser's preferred language
-    return request.accept_languages.best_match(['en', 'fr'])
+    lang = request.accept_languages.best_match(['en', 'fr'])
+    logging.debug(f"Language from browser: {lang}")
+    return lang

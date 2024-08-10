@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-09 17:21+0100\n"
+"POT-Creation-Date: 2024-08-10 04:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,97 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
+
+#: flask_ambrosial/templates/layout.html:16
+msgid "Ambrosial - "
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:18
+#: flask_ambrosial/templates/layout.html:26
+msgid "Ambrosial"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:28
+msgid "Toggle navigation"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:34
+msgid "Home"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:35
+msgid "About"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:40
+msgid "New Post"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:41
+msgid "Account"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:42
+msgid "Logout"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:44
+msgid "Login"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:45
+msgid "Register"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:51
+msgid "Language"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:55
+msgid "English"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:56
+msgid "Français"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:85
+msgid "Stay Organized"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:86
+msgid "Enhance your culinary journey with these useful features:"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:89
+msgid "Event Calendar:"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:89
+msgid ""
+"Plan your cooking sessions, meal preps, and grocery shopping trips "
+"effortlessly."
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:92
+msgid "Weather Forecast:"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:92
+msgid ""
+"Check the weather forecast to adjust your cooking plans according to the "
+"conditions outside."
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:95
+msgid "Location Services:"
+msgstr ""
+
+#: flask_ambrosial/templates/layout.html:95
+msgid ""
+"Discover nearby grocery stores, farmer's markets, and culinary events "
+"with integrated maps."
+msgstr ""
 
 #: myenv/lib/python3.10/site-packages/click/_termui_impl.py:518
 msgid "{editor}: Editing failed"
@@ -153,10 +244,6 @@ msgstr ""
 
 #: myenv/lib/python3.10/site-packages/click/exceptions.py:269
 msgid "Could not open file {filename!r}: {message}"
-msgstr ""
-
-#: myenv/lib/python3.10/site-packages/click/formatting.py:156
-msgid "Usage:"
 msgstr ""
 
 #: myenv/lib/python3.10/site-packages/click/parser.py:231

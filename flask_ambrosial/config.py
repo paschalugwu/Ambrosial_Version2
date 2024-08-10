@@ -17,8 +17,11 @@ class Config:
     MAIL_USE_TLS = True  # Enable TLS encryption for email
     MAIL_USERNAME = os.environ.get('EMAIL_USER')  # Email username from environment variable
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')  # Email password from environment variable
-    
+
     # Internationalization (i18n) settings
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'  # Default locale
     BABEL_TRANSLATION_DIRECTORIES = './translations'
+    
+    # Enable debug mode
+    DEBUG = True
