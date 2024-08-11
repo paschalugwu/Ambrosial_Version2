@@ -13,7 +13,7 @@
 
                 <!-- Image rendering -->
                 {% if post.image_filename %}
-                    <img src="{{ url_for('static', filename='post_pics/' + post.image_filename) }}" alt="{{ post.title }}" style="width:100%; border:none;">
+                    <img class="post-image" src="{{ url_for('static', filename='post_pics/' + post.image_filename) }}" alt="{{ post.title }}">
                 {% endif %}
 
                 <p class="article-content">{{ post.content }}</p>
@@ -30,3 +30,7 @@
         {% endif %}
     {% endfor %}
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/comments.js') }}"></script>
+{% endblock scripts %}

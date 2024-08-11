@@ -13,33 +13,98 @@
                     </div>
                 {% endif %}
             </div>
-            <h2 class="article-title"></h2>{{ post.title }}</h2>
+            <h2 class="article-title">{{ post.title }}</h2>
 
-            <!-- Image rendering -->
             {% if post.image_filename %}
-                <img src="{{ url_for('static', filename='post_pics/' + post.image_filename) }}" alt="{{ post.title }}" style="width:100%; border:none;">
+                <img src="{{ url_for('static', filename='post_pics/' + post.image_filename) }}" alt="{{ post.title }}" style="max-width: 100%; height: auto; border: none;">
             {% endif %}
 
-            <p class="article-content">{{ post.content }}</p>
+            <p class="article-content">
+                {{ post.content.split(' ')[:20] | join(' ') }}...
+                <a href="#" class="read-more" data-full-content="{{ post.content }}">Read more</a>
+            </p>
         </div>
     </article>
+
+    <!-- Comment Icons -->
+    <div class="comment-icons">
+        <span class="icon add-comment-icon">💬</span>
+        <span class="icon view-comments-icon">👁️</span>
+    </div>
+
+    <!-- Comment Form -->
+    <div class="card my-4 comment-form" style="display: none;">
+        <h5 class="card-header">Leave a Comment:</h5>
+        <div class="card-body">
+            <form action="{{ url_for('posts.post', post_id=post.id) }}" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.content.label(class="form-control-label") }}
+                    {{ form.content(class="form-control form-control-lg") }}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Display Comments -->
+    <div class="comments-display" style="display: none;">
+        {% for comment in post.comments %}
+            <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="{{ url_for('static', filename='profile_pics/' + comment.author.image_file) }}" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">{{ comment.author.username }}</h5>
+                    {{ comment.content }}
+                    <div class="mt-2">
+                        <button class="btn btn-link reply-icon" style="font-size: 18px;">↩️</button>
+                        <div class="reply-form" style="display: none;">
+                            <form action="{{ url_for('posts.add_comment') }}" method="POST">
+                                {{ form.hidden_tag() }}
+                                <input type="hidden" name="post_id" value="{{ post.id }}">
+                                <input type="hidden" name="parent_comment_id" value="{{ comment.id }}">
+                                <div class="form-group">
+                                    {{ form.content.label(class="form-control-label") }}
+                                    {{ form.content(class="form-control form-control-sm") }}
+                                </div>
+                                <button type="submit" class="btn btn-secondary btn-sm">Reply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Display Replies -->
+                    {% for reply in comment.replies %}
+                        <div class="media mt-4">
+                            <img class="d-flex mr-3 rounded-circle" src="{{ url_for('static', filename='profile_pics/' + reply.author.image_file) }}" alt="">
+                            <div class="media-body">
+                                <h5 class="mt-0">{{ reply.author.username }}</h5>
+                                {{ reply.content }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this post?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this post?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+                        <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
+                </div>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
-                <input class="btn btn-danger" type="submit" value="Delete">
-            </form>
-            </div>
-        </div>
         </div>
     </div>
+
+    <!-- Include the comments.js file -->
+    <script src="{{ url_for('static', filename='js/comments.js') }}"></script>
 {% endblock content %}

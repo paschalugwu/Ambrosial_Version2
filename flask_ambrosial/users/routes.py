@@ -3,9 +3,9 @@
 from flask import Blueprint, render_template, url_for, flash, redirect, request, session
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_ambrosial import db, bcrypt
-from flask_ambrosial.models import User, Post
+from flask_ambrosial.models import User, Post, Comment
 from flask_ambrosial.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
-                                   RequestResetForm, ResetPasswordForm)
+                                   RequestResetForm, ResetPasswordForm, CommentForm)
 from flask_ambrosial.users.utils import save_picture, send_reset_email
 from flask_babel import refresh
 import logging
@@ -124,3 +124,29 @@ def setlang(lang):
         logging.debug(f"Invalid language requested: {lang}")
     logging.debug(f"Redirecting to: {url_for('main.home')}")
     return redirect(url_for('main.home'))
+
+
+@users.route("/post/<int:post_id>/comment", methods=['POST'])
+@login_required
+def comment_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(content=form.content.data, author=current_user, post=post)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment has been added!', 'success')
+    return redirect(url_for('posts.post', post_id=post.id))
+
+
+@users.route("/comment/<int:comment_id>/reply", methods=['POST'])
+@login_required
+def reply_comment(comment_id):
+    parent_comment = Comment.query.get_or_404(comment_id)
+    form = CommentForm()
+    if form.validate_on_submit():
+        reply = Comment(content=form.content.data, author=current_user, post=parent_comment.post, parent=parent_comment)
+        db.session.add(reply)
+        db.session.commit()
+        flash('Your reply has been added!', 'success')
+    return redirect(url_for('posts.post', post_id=parent_comment.post.id))

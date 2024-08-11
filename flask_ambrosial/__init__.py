@@ -9,6 +9,7 @@ from flask_mail import Mail
 from flask_ambrosial.config import Config
 from flask_babel import Babel
 import logging
+from flask_migrate import Migrate
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -30,6 +31,9 @@ mail = Mail()
 # Initialize Flask-Babel for internationalization
 babel = Babel()
 
+# Initialize Flask-Migrate
+migrate = Migrate()
+
 def create_app(config_class=Config):
     """Create and configure the Flask application.
 
@@ -41,7 +45,7 @@ def create_app(config_class=Config):
         Flask: The configured Flask application instance.
     """
     # Create the Flask application instance
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static', static_url_path='/static')
     # Load configuration from the provided Config class
     app.config.from_object(Config)
 
@@ -51,6 +55,7 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
+    migrate.init_app(app, db)  # Initialize Flask-Migrate with the app and db
 
     # Register context processor globally
     @app.context_processor
