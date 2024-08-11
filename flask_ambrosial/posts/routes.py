@@ -28,7 +28,7 @@ def new_post():
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('posts.home'))
     return render_template('create_post.html', title='New Post', form=form, legend='New Post')
 
 @posts.route("/post/<int:post_id>", methods=['GET', 'POST'])
@@ -78,7 +78,7 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted', 'success')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('posts.home'))
 
 @posts.route("/comments", methods=['POST'])
 @login_required
@@ -95,7 +95,7 @@ def add_comment():
     db.session.add(comment)
     db.session.commit()
 
-    return redirect(url_for('main.home'))
+    return redirect(url_for('posts.home'))
 
 @posts.route("/comments", methods=['GET'])
 def get_comments():
@@ -170,7 +170,7 @@ def delete_comment(comment_id):
     db.session.delete(comment)
     db.session.commit()
     flash('Your comment has been deleted', 'success')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('posts.home'))
 
 @posts.route("/comment/<int:comment_id>/edit", methods=['GET', 'POST'])
 @login_required
@@ -183,7 +183,7 @@ def edit_comment(comment_id):
         comment.content = form.content.data
         db.session.commit()
         flash('Your comment has been updated', 'success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('posts.home'))
     elif request.method == 'GET':
         form.content.data = comment.content
     return render_template('edit_comment.html', title='Edit Comment', form=form, legend='Edit Comment')

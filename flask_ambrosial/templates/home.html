@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+
 {% block content %}
     {% for post in posts.items %}
         <article class="media content-section">
@@ -7,6 +8,12 @@
                 <div class="article-metadata">
                     <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
                     <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                    {% if post.author == current_user %}
+                        <div>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+                            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal-{{ post.id }}">Delete</button>
+                        </div>
+                    {% endif %}
                 </div>
                 <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
 
@@ -50,6 +57,10 @@
                                 <h5 class="mt-0">{{ comment.author.username }}</h5>
                                 {{ comment.content }}
                                 <div class="mt-2">
+                                    {% if comment.author == current_user %}
+                                        <button class="btn btn-link edit-comment-icon" style="font-size: 18px;">✏️</button>
+                                        <button class="btn btn-link delete-comment-icon" style="font-size: 18px;">🗑️</button>
+                                    {% endif %}
                                     <span class="icon reply-icon">↩️</span>
                                     <div class="reply-form" style="display: none;">
                                         <form action="{{ url_for('posts.add_comment') }}" method="POST">
@@ -71,6 +82,12 @@
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ reply.author.username }}</h5>
                                             {{ reply.content }}
+                                            <div class="mt-2">
+                                                {% if reply.author == current_user %}
+                                                    <button class="btn btn-link edit-reply-icon" style="font-size: 18px;">✏️</button>
+                                                    <button class="btn btn-link delete-reply-icon" style="font-size: 18px;">🗑️</button>
+                                                {% endif %}
+                                            </div>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -80,7 +97,28 @@
                 </div>
             </div>
         </article>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal-{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ post.id }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel-{{ post.id }}">Are you sure you want to delete this post?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
+
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
             {% if posts.page == page_num %}
@@ -93,5 +131,5 @@
 {% endblock content %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='js/comments.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/home-comments.js') }}"></script>
 {% endblock scripts %}
