@@ -37,10 +37,10 @@
                     <h5 class="card-header">Leave a Comment:</h5>
                     <div class="card-body">
                         <form action="{{ url_for('posts.add_comment') }}" method="POST">
-                            {{ form.hidden_tag() }}
+                            {{ comment_form.hidden_tag() }}
                             <div class="form-group">
-                                {{ form.content.label(class="form-control-label") }}
-                                {{ form.content(class="form-control form-control-lg") }}
+                                {{ comment_form.content.label(class="form-control-label") }}
+                                {{ comment_form.content(class="form-control form-control-lg") }}
                             </div>
                             <input type="hidden" name="post_id" value="{{ post.id }}">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -58,16 +58,16 @@
                                 {{ comment.content }}
                                 <div class="mt-2">
                                     {% if comment.author == current_user %}
-                                        <button class="btn btn-link edit-comment-icon" style="font-size: 18px;">✏️</button>
-                                        <button class="btn btn-link delete-comment-icon" style="font-size: 18px;">🗑️</button>
+                                        <button class="btn btn-link edit-comment-icon" style="font-size: 18px;" data-comment-id="{{ comment.id }}">✏️</button>
+                                        <button class="btn btn-link delete-comment-icon" style="font-size: 18px;" data-comment-id="{{ comment.id }}">🗑️</button>
                                     {% endif %}
                                     <span class="icon reply-icon">↩️</span>
                                     <div class="reply-form" style="display: none;">
                                         <form action="{{ url_for('posts.add_comment') }}" method="POST">
-                                            {{ form.hidden_tag() }}
+                                            {{ comment_form.hidden_tag() }}
                                             <div class="form-group">
-                                                {{ form.content.label(class="form-control-label") }}
-                                                {{ form.content(class="form-control form-control-sm") }}
+                                                {{ comment_form.content.label(class="form-control-label") }}
+                                                {{ comment_form.content(class="form-control form-control-sm") }}
                                             </div>
                                             <input type="hidden" name="post_id" value="{{ post.id }}">
                                             <input type="hidden" name="parent_comment_id" value="{{ comment.id }}">
@@ -84,8 +84,8 @@
                                             {{ reply.content }}
                                             <div class="mt-2">
                                                 {% if reply.author == current_user %}
-                                                    <button class="btn btn-link edit-reply-icon" style="font-size: 18px;">✏️</button>
-                                                    <button class="btn btn-link delete-reply-icon" style="font-size: 18px;">🗑️</button>
+                                                    <button class="btn btn-link edit-reply-icon" style="font-size: 18px;" data-reply-id="{{ reply.id }}">✏️</button>
+                                                    <button class="btn btn-link delete-reply-icon" style="font-size: 18px;" data-reply-id="{{ reply.id }}">🗑️</button>
                                                 {% endif %}
                                             </div>
                                         </div>

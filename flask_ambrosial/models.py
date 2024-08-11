@@ -75,3 +75,6 @@ class Reaction(db.Model):
     comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     reaction_type = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return f"Reaction('{self.reaction_type}', 'Comment ID: {self.comment_id}', 'User ID: {self.user_id}')"

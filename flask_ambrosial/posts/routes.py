@@ -158,8 +158,9 @@ def add_reaction():
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    form = CommentForm()
-    return render_template('home.html', posts=posts, form=form)
+    post_form = PostForm()
+    comment_form = CommentForm()
+    return render_template('home.html', posts=posts, post_form=post_form, comment_form=comment_form)
 
 @posts.route("/comment/<int:comment_id>/delete", methods=['POST'])
 @login_required
@@ -170,6 +171,17 @@ def delete_comment(comment_id):
     db.session.delete(comment)
     db.session.commit()
     flash('Your comment has been deleted', 'success')
+    return redirect(url_for('posts.home'))
+
+@posts.route("/reply/<int:reply_id>/delete", methods=['POST'])
+@login_required
+def delete_reply(reply_id):
+    reply = Comment.query.get_or_404(reply_id)
+    if reply.author != current_user:
+        abort(403)
+    db.session.delete(reply)
+    db.session.commit()
+    flash('Your reply has been deleted', 'success')
     return redirect(url_for('posts.home'))
 
 @posts.route("/comment/<int:comment_id>/edit", methods=['GET', 'POST'])
@@ -183,7 +195,23 @@ def edit_comment(comment_id):
         comment.content = form.content.data
         db.session.commit()
         flash('Your comment has been updated', 'success')
-        return redirect(url_for('posts.home'))
+        return redirect(url_for('posts.post', post_id=comment.post_id))  # Redirect to the post page
     elif request.method == 'GET':
         form.content.data = comment.content
     return render_template('edit_comment.html', title='Edit Comment', form=form, legend='Edit Comment')
+
+@posts.route("/reply/<int:reply_id>/edit", methods=['GET', 'POST'])
+@login_required
+def edit_reply(reply_id):
+    reply = Comment.query.get_or_404(reply_id)
+    if reply.author != current_user:
+        abort(403)
+    form = CommentForm()
+    if form.validate_on_submit():
+        reply.content = form.content.data
+        db.session.commit()
+        flash('Your reply has been updated', 'success')
+        return redirect(url_for('posts.post', post_id=reply.post_id))  # Redirect to the post page
+    elif request.method == 'GET':
+        form.content.data = reply.content
+    return render_template('edit_comment.html', title='Edit Reply', form=form, legend='Edit Reply')

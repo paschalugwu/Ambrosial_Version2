@@ -24,6 +24,69 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    document.querySelectorAll('.edit-comment-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const commentId = this.dataset.commentId;
+            window.location.href = `/comment/${commentId}/edit`;
+        });
+    });
+
+    document.querySelectorAll('.delete-comment-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const commentId = this.dataset.commentId;
+            if (confirm('Are you sure you want to delete this comment?')) {
+                fetch(`/comment/${commentId}/delete`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('input[name="csrf_token"]').value
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Failed to delete comment.');
+                    }
+                });
+            }
+        });
+    });
+
+    document.querySelectorAll('.edit-reply-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const replyId = this.dataset.replyId;
+            window.location.href = `/reply/${replyId}/edit`;
+        });
+    });
+
+    document.querySelectorAll('.delete-reply-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const replyId = this.dataset.replyId;
+            if (confirm('Are you sure you want to delete this reply?')) {
+                fetch(`/reply/${replyId}/delete`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('input[name="csrf_token"]').value
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Failed to delete reply.');
+                    }
+                });
+            }
+        });
+    });
+
+    document.querySelectorAll('.edit-reply-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const replyId = this.dataset.replyId;
+            window.location.href = `/reply/${replyId}/edit`;
+        });
+    });
+
     function addReadMoreEventListeners() {
         document.querySelectorAll('.read-more').forEach(link => {
             link.addEventListener('click', function(event) {
