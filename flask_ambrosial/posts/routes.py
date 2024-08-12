@@ -6,8 +6,7 @@ from flask import Blueprint, current_app, render_template, url_for, flash, redir
 from flask_login import current_user, login_required
 from flask_ambrosial import db
 from flask_ambrosial.models import Post, Comment, Reaction
-from flask_ambrosial.posts.forms import PostForm
-from flask_ambrosial.users.forms import CommentForm
+from flask_ambrosial.posts.forms import PostForm, CommentForm, ReplyForm
 
 # Blueprint for handling post-related routes
 posts = Blueprint('posts', __name__)
@@ -31,17 +30,18 @@ def new_post():
         return redirect(url_for('posts.home'))
     return render_template('create_post.html', title='New Post', form=form, legend='New Post')
 
-@posts.route("/post/<int:post_id>", methods=['GET', 'POST'])
+@posts.route("/post/<int:post_id>", methods=['GET', 'POST'], endpoint='post')
 def post(post_id):
     post = Post.query.get_or_404(post_id)
-    form = CommentForm()
-    if form.validate_on_submit():
-        comment = Comment(content=form.content.data, author=current_user, post=post)
+    comment_form = CommentForm()
+    reply_form = ReplyForm()
+    if comment_form.validate_on_submit():
+        comment = Comment(content=comment_form.content.data, author=current_user, post=post)
         db.session.add(comment)
         db.session.commit()
         flash('Your comment has been posted!', 'success')
         return redirect(url_for('posts.post', post_id=post.id))
-    return render_template('post.html', title=post.title, post=post, form=form)
+    return render_template('post.html', title=post.title, post=post, comment_form=comment_form, reply_form=reply_form)
 
 @posts.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
@@ -95,7 +95,7 @@ def add_comment():
     db.session.add(comment)
     db.session.commit()
 
-    return redirect(url_for('posts.home'))
+    return redirect(url_for('posts.post', post_id=post_id))
 
 @posts.route("/comments", methods=['GET'])
 def get_comments():
@@ -152,7 +152,6 @@ def add_reaction():
 
     return jsonify({'success': True, 'message': 'Reaction added'}), 201
 
-# Corrected home route
 @posts.route("/")
 @posts.route("/home")
 def home():
@@ -160,7 +159,8 @@ def home():
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     post_form = PostForm()
     comment_form = CommentForm()
-    return render_template('home.html', posts=posts, post_form=post_form, comment_form=comment_form)
+    reply_form = ReplyForm()
+    return render_template('home.html', posts=posts, post_form=post_form, comment_form=comment_form, reply_form=reply_form)
 
 @posts.route("/comment/<int:comment_id>/delete", methods=['POST'])
 @login_required
@@ -206,12 +206,66 @@ def edit_reply(reply_id):
     reply = Comment.query.get_or_404(reply_id)
     if reply.author != current_user:
         abort(403)
-    form = CommentForm()
+    form = ReplyForm()
     if form.validate_on_submit():
         reply.content = form.content.data
         db.session.commit()
         flash('Your reply has been updated', 'success')
         return redirect(url_for('posts.post', post_id=reply.post_id))  # Redirect to the post page
+    elif request.method == 'GET':
+        form.content.data = reply.content
+    return render_template('edit_comment.html', title='Edit Reply', form=form, legend='Edit Reply')
+
+@posts.route("/post/<int:post_id>/comment/<int:comment_id>/delete", methods=['POST'], endpoint='delete_post_comment')
+@login_required
+def delete_post_comment(post_id, comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    if comment.author != current_user:
+        abort(403)
+    db.session.delete(comment)
+    db.session.commit()
+    flash('Your comment has been deleted', 'success')
+    return redirect(url_for('posts.post', post_id=post_id))
+
+@posts.route("/post/<int:post_id>/reply/<int:reply_id>/delete", methods=['POST'], endpoint='delete_post_reply')
+@login_required
+def delete_post_reply(post_id, reply_id):
+    reply = Comment.query.get_or_404(reply_id)
+    if reply.author != current_user:
+        abort(403)
+    db.session.delete(reply)
+    db.session.commit()
+    flash('Your reply has been deleted', 'success')
+    return redirect(url_for('posts.post', post_id=post_id))
+
+@posts.route("/post/<int:post_id>/comment/<int:comment_id>/edit", methods=['GET', 'POST'], endpoint='edit_post_comment')
+@login_required
+def edit_post_comment(post_id, comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    if comment.author != current_user:
+        abort(403)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment.content = form.content.data
+        db.session.commit()
+        flash('Your comment has been updated', 'success')
+        return redirect(url_for('posts.post', post_id=post_id))
+    elif request.method == 'GET':
+        form.content.data = comment.content
+    return render_template('edit_comment.html', title='Edit Comment', form=form, legend='Edit Comment')
+
+@posts.route("/post/<int:post_id>/reply/<int:reply_id>/edit", methods=['GET', 'POST'], endpoint='edit_post_reply')
+@login_required
+def edit_post_reply(post_id, reply_id):
+    reply = Comment.query.get_or_404(reply_id)
+    if reply.author != current_user:
+        abort(403)
+    form = ReplyForm()
+    if form.validate_on_submit():
+        reply.content = form.content.data
+        db.session.commit()
+        flash('Your reply has been updated', 'success')
+        return redirect(url_for('posts.post', post_id=post_id))
     elif request.method == 'GET':
         form.content.data = reply.content
     return render_template('edit_comment.html', title='Edit Reply', form=form, legend='Edit Reply')

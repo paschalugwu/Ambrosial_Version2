@@ -6,15 +6,18 @@ from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
 class PostForm(FlaskForm):
-    """Form for creating a new post.
-
-    Attributes:
-        title (StringField): Field for entering the post title.
-        content (TextAreaField): Field for entering the post content.
-        image_filename (FileField): Field for uploading an image file.
-        submit (SubmitField): Button to submit the post form.
-    """
+    """Form for creating a new post."""
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     image_filename = FileField('Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')
+
+class CommentForm(FlaskForm):
+    """Form for creating a new comment."""
+    content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Comment')
+
+class ReplyForm(FlaskForm):
+    """Form for creating a new reply."""
+    content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Reply')
