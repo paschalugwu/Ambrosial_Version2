@@ -7,6 +7,8 @@ from flask_ambrosial import db, login_manager
 from datetime import datetime, timezone
 from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer as Serializer
+from sqlalchemy import Column, Integer, Text, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 
 
 @login_manager.user_loader
@@ -48,7 +50,7 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now(timezone.utc))
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', name='fk_post_user_id'), nullable=False)
     image_filename = db.Column(db.String(100), nullable=False)
     comments = db.relationship('Comment', backref='post', lazy=True)
 
@@ -58,23 +60,12 @@ class Post(db.Model):
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now(timezone.utc))
+    content = db.Column(db.String(200), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
     parent_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=True)
-    replies = db.relationship('Comment', backref=db.backref('parent', remote_side=[id]), lazy=True)
-    reactions = db.relationship('Reaction', backref='comment', lazy=True)
+    replies = db.relationship('Comment', backref=db.backref('parent', remote_side=[id]), lazy=True, cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"Comment('{self.content}', '{self.date_posted}')"
-
-
-class Reaction(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    reaction_type = db.Column(db.String(20), nullable=False)
-
-    def __repr__(self):
-        return f"Reaction('{self.reaction_type}', 'Comment ID: {self.comment_id}', 'User ID: {self.user_id}')"

@@ -5,7 +5,7 @@ import secrets
 from flask import Blueprint, current_app, render_template, url_for, flash, redirect, request, abort, jsonify
 from flask_login import current_user, login_required
 from flask_ambrosial import db
-from flask_ambrosial.models import Post, Comment, Reaction
+from flask_ambrosial.models import Post, Comment
 from flask_ambrosial.posts.forms import PostForm, CommentForm, ReplyForm
 
 # Blueprint for handling post-related routes
@@ -113,9 +113,7 @@ def get_comments():
             'author': {
                 'name': comment.author.username,
                 'profile_picture': url_for('static', filename='profile_pics/' + comment.author.image_file)
-            },
-            'reactions': {'like': len(comment.reactions)},
-            'replies': get_replies(comment.id)
+            }
         })
 
     return jsonify({'success': True, 'comments': comments_data}), 200
@@ -131,26 +129,9 @@ def get_replies(comment_id):
             'author': {
                 'name': reply.author.username,
                 'profile_picture': url_for('static', filename='profile_pics/' + reply.author.image_file)
-            },
-            'reactions': {'like': len(reply.reactions)}
+            }
         })
     return replies_data
-
-@posts.route("/reactions", methods=['POST'])
-@login_required
-def add_reaction():
-    data = request.get_json()
-    comment_id = data.get('comment_id')
-    reaction_type = data.get('reaction_type')
-
-    if not comment_id or not reaction_type:
-        return jsonify({'success': False, 'message': 'Invalid data'}), 400
-
-    reaction = Reaction(comment_id=comment_id, user_id=current_user.id, reaction_type=reaction_type)
-    db.session.add(reaction)
-    db.session.commit()
-
-    return jsonify({'success': True, 'message': 'Reaction added'}), 201
 
 @posts.route("/")
 @posts.route("/home")
