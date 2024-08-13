@@ -137,16 +137,3 @@ def comment_post(post_id):
         db.session.commit()
         flash('Your comment has been added!', 'success')
     return redirect(url_for('posts.post', post_id=post.id))
-
-
-@users.route("/comment/<int:comment_id>/reply", methods=['POST'])
-@login_required
-def reply_comment(comment_id):
-    parent_comment = Comment.query.get_or_404(comment_id)
-    form = CommentForm()
-    if form.validate_on_submit():
-        reply = Comment(content=form.content.data, author=current_user, post=parent_comment.post, parent=parent_comment)
-        db.session.add(reply)
-        db.session.commit()
-        flash('Your reply has been added!', 'success')
-    return redirect(url_for('posts.post', post_id=parent_comment.post.id))

@@ -10,6 +10,8 @@ from flask_ambrosial.config import Config
 from flask_babel import Babel
 import logging
 from flask_migrate import Migrate
+from flask_socketio import SocketIO
+from flask_cors import CORS
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -34,6 +36,9 @@ babel = Babel()
 # Initialize Flask-Migrate
 migrate = Migrate()
 
+# Initialize SocketIO
+socketio = SocketIO(cors_allowed_origins=["http://localhost:5000", "https://localhost:5000"])
+
 def create_app(config_class=Config):
     """Create and configure the Flask application.
 
@@ -55,7 +60,8 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
-    migrate.init_app(app, db)  # Initialize Flask-Migrate with the app and db
+    migrate.init_app(app, db)
+    socketio.init_app(app)
 
     # Register context processor globally
     @app.context_processor
@@ -73,11 +79,13 @@ def create_app(config_class=Config):
     from flask_ambrosial.main.routes import main
     from flask_ambrosial.errors.handlers import errors
     from flask_ambrosial.apis.api_routes import api_bp
+    from flask_ambrosial.chats.routes import chat
     app.register_blueprint(users)  # Register users blueprint
     app.register_blueprint(posts)  # Register posts blueprint
     app.register_blueprint(main)   # Register main blueprint
     app.register_blueprint(errors)  # Register errors blueprint
     app.register_blueprint(api_bp)  # Register API blueprint
+    app.register_blueprint(chat)  # Register chat blueprint
 
     return app
 
