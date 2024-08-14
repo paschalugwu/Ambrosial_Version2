@@ -200,3 +200,8 @@ a.article-title:hover {
     height: auto;
     border: none;
 }
+
+#languageDropdown option {
+    background-color: #343a40;
+    color: #fff;
+}

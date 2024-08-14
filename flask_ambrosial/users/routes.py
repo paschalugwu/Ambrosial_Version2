@@ -7,14 +7,8 @@ from flask_ambrosial.models import User, Post, Comment
 from flask_ambrosial.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                    RequestResetForm, ResetPasswordForm, CommentForm)
 from flask_ambrosial.users.utils import save_picture, send_reset_email
-from flask_babel import refresh
-import logging
-
-# Configure logging
-logging.basicConfig(level=logging.DEBUG)
 
 users = Blueprint('users', __name__)
-
 
 @users.route("/register", methods=['GET', 'POST'])
 def register():
@@ -111,16 +105,3 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
-
-
-@users.route("/setlang/<lang>")
-def setlang(lang):
-    logging.debug(f"Requested language: {lang}")
-    if lang in ['en', 'fr']:
-        session['lang'] = lang
-        logging.debug(f"Session language set to: {session['lang']}")
-        refresh()  # Refresh Babel translations
-    else:
-        logging.debug(f"Invalid language requested: {lang}")
-    logging.debug(f"Redirecting to: {url_for('main.home')}")
-    return redirect(url_for('main.home'))

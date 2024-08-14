@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
 """Initialization of the Flask application and its extensions."""
 
-from flask import Flask, request, session, current_app
+from flask import Flask, redirect, request, session, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from flask_ambrosial.config import Config
-from flask_babel import Babel
-import logging
 from flask_migrate import Migrate
 from flask_socketio import SocketIO
 from flask_cors import CORS
+from flask_babel import Babel, lazy_gettext as _l, gettext  # Correct import
 
-# Configure logging
-logging.basicConfig(level=logging.DEBUG)
+from flask_ambrosial.config import Config
 
 # Initialize SQLAlchemy database object
 db = SQLAlchemy()
@@ -30,14 +27,23 @@ login_manager.login_message_category = 'info'  # Set login message category
 # Initialize Flask-Mail for sending emails
 mail = Mail()
 
-# Initialize Flask-Babel for internationalization
-babel = Babel()
-
 # Initialize Flask-Migrate
 migrate = Migrate()
 
 # Initialize SocketIO
 socketio = SocketIO(cors_allowed_origins=["http://localhost:5000", "https://localhost:5000"])
+
+# Initialize Babel for i18n
+babel = Babel()
+
+def get_locale():
+    """Determine the best match language from the request."""
+    if 'lang' in request.args:
+        lang = request.args.get('lang')
+        if lang in current_app.config['LANGUAGES']:
+            session['lang'] = lang
+            return lang
+    return session.get('lang', request.accept_languages.best_match(current_app.config['LANGUAGES']))
 
 def create_app(config_class=Config):
     """Create and configure the Flask application.
@@ -52,26 +58,16 @@ def create_app(config_class=Config):
     # Create the Flask application instance
     app = Flask(__name__, static_folder='static', static_url_path='/static')
     # Load configuration from the provided Config class
-    app.config.from_object(Config)
+    app.config.from_object(config_class)
 
     # Initialize extensions with the Flask application instance
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
-    babel.init_app(app, locale_selector=get_locale)
     migrate.init_app(app, db)
     socketio.init_app(app)
-
-    # Register context processor globally
-    @app.context_processor
-    def inject_locale():
-        """Inject the get_locale function into the template context.
-
-        Returns:
-            dict: A dictionary containing the get_locale function.
-        """
-        return {'get_locale': get_locale}
+    babel.init_app(app, locale_selector=get_locale)
 
     # Import blueprints and register them with the app
     from flask_ambrosial.users.routes import users
@@ -87,22 +83,14 @@ def create_app(config_class=Config):
     app.register_blueprint(api_bp)  # Register API blueprint
     app.register_blueprint(chat)  # Register chat blueprint
 
-    return app
+    @app.route('/setlang')
+    def setlang():
+        lang = request.args.get('lang', 'en')
+        session['lang'] = lang
+        return redirect(request.referrer)
 
-def get_locale():
-    logging.debug("Determining locale...")
-    # Check if the language query parameter is set and valid
-    if 'lang' in request.args:
-        lang = request.args.get('lang')
-        logging.debug(f"Language from query parameter: {lang}")
-        if lang in ['en', 'fr']:
-            session['lang'] = lang
-            return session['lang']
-    # If not set via query, check if we have it stored in the session
-    elif 'lang' in session:
-        logging.debug(f"Language from session: {session.get('lang')}")
-        return session.get('lang')
-    # Otherwise, use the browser's preferred language
-    lang = request.accept_languages.best_match(['en', 'fr'])
-    logging.debug(f"Language from browser: {lang}")
-    return lang
+    @app.context_processor
+    def inject_babel():
+        return dict(_=gettext, get_locale=get_locale)  # Add get_locale here
+
+    return app

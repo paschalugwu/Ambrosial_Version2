@@ -22,6 +22,3 @@ class Config:
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'  # Default locale
     BABEL_TRANSLATION_DIRECTORIES = './translations'
-    
-    # Enable debug mode
-    DEBUG = True
