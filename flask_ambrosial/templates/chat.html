@@ -4,14 +4,14 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <h2>Chat Room</h2>
+            <h2>{{ _('Chat Room') }}</h2>
             <div id="chat-box" class="border rounded p-3 mb-3" style="height: 300px; width: 100%; overflow-y: scroll;">
                 <!-- Chat messages will be appended here -->
             </div>
             <form id="chat-form" class="input-group">
-                <input type="text" id="message-input" class="form-control" placeholder="Type your message..." aria-label="Message" aria-describedby="send-btn" required>
+                <input type="text" id="message-input" class="form-control" placeholder="{{ _('Type your message...') }}" aria-label="{{ _('Message') }}" aria-describedby="send-btn" required>
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit" id="send-btn">Send</button>
+                    <button class="btn btn-primary" type="submit" id="send-btn">{{ _('Send') }}</button>
                 </div>
             </form>
         </div>
@@ -19,57 +19,5 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        const socket = io.connect(window.location.protocol + "//" + window.location.host);
-
-        const chatBox = document.getElementById('chat-box');
-        const chatForm = document.getElementById('chat-form');
-        const messageInput = document.getElementById('message-input');
-
-        // Join the chat room
-        socket.emit('join', {
-            'username': '{{ username }}',
-            'room': 'default'
-        });
-
-        // Listen for incoming messages
-        socket.on('message', function(data) {
-            const messageElement = document.createElement('div');
-            const timestamp = new Date().toLocaleTimeString();
-
-            if (data.msg.startsWith('{{ username }}:')) {
-                messageElement.classList.add('text-right', 'bg-primary', 'text-white', 'rounded', 'p-2', 'mb-2');
-                messageElement.style.maxWidth = '60%';
-                messageElement.style.marginLeft = 'auto';
-                messageElement.textContent = `[${timestamp}] ${data.msg}`;
-            } else {
-                messageElement.classList.add('text-left', 'bg-light', 'text-dark', 'rounded', 'p-2', 'mb-2');
-                messageElement.style.maxWidth = '60%';
-                messageElement.style.marginRight = 'auto';
-                messageElement.textContent = `[${timestamp}] ${data.msg}`;
-            }
-
-            chatBox.appendChild(messageElement);
-            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
-        });
-
-        // Handle form submission
-        chatForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const msg = messageInput.value;
-            if (msg.trim() !== "") {
-                socket.emit('message', {
-                    'username': '{{ username }}',
-                    'room': 'default',
-                    'msg': msg
-                });
-
-                // Clear the input field
-                messageInput.value = '';
-            }
-        });
-    });
-</script>
+<script src="{{ url_for('static', filename='js/chats.js') }}"></script>
 {% endblock %}

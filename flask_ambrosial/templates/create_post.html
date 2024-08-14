@@ -5,7 +5,7 @@
         {{ form.hidden_tag() }}
         <!-- Fieldset for grouping form elements -->
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <legend class="border-bottom mb-4">{{ _(legend) }}</legend>
             <!-- Title field -->
             <div class="form-group">
                 {{ form.title.label(class="form-control-label") }}
@@ -14,7 +14,7 @@
                     <!-- Display errors if any -->
                     <div class="invalid-feedback">
                         {% for error in form.title.errors %}
-                            <span>{{ error }}</span>
+                            <span>{{ _(error) }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -29,7 +29,7 @@
                     <!-- Display errors if any -->
                     <div class="invalid-feedback">
                         {% for error in form.content.errors %}
-                            <span>{{ error }}</span>
+                            <span>{{ _(error) }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -43,7 +43,7 @@
                 {% if form.image_filename.errors %}
                     <!-- Display errors if any -->
                     {% for error in form.image_filename.errors %}
-                        <span class="text-danger">{{ error }}</span></br>
+                        <span class="text-danger">{{ _(error) }}</span></br>
                     {% endfor %}
                 {% endif %}
             </div>

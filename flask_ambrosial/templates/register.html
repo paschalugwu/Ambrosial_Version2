@@ -10,7 +10,7 @@
             <!-- Fieldset for grouping form elements -->
             <fieldset class="form-group">
                 <!-- Legend for grouping form fields -->
-                <legend class="border-bottom mb-4">Join Today</legend>
+                <legend class="border-bottom mb-4">{{ _('Join Today') }}</legend>
                 <!-- Username field -->
                 <div class="form-group">
                     <!-- Label for the username field -->
@@ -95,7 +95,7 @@
     <div class="border-top pt-3">
         <!-- Link to redirect users to the sign-in page if they already have an account -->
         <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a>
+            {{ _('Already Have An Account?') }} <a class="ml-2" href="{{ url_for('users.login') }}">{{ _('Sign In') }}</a>
         </small>
     </div>
 {% endblock content %}

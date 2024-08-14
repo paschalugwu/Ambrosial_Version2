@@ -10,8 +10,8 @@
                     <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                     {% if post.author == current_user %}
                         <div>
-                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
-                            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal-{{ post.id }}">Delete</button>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">{{ _('Update') }}</a>
+                            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal-{{ post.id }}">{{ _('Delete') }}</button>
                         </div>
                     {% endif %}
                 </div>
@@ -23,7 +23,7 @@
 
                 <p class="article-content">
                     {{ post.content.split(' ')[:20] | join(' ') }}...
-                    <a href="#" class="read-more" data-full-content="{{ post.content }}">Read more</a>
+                    <a href="#" class="read-more" data-full-content="{{ post.content }}">{{ _('Read more') }}</a>
                 </p>
 
                 <!-- Comment Icons -->
@@ -34,7 +34,7 @@
 
                 <!-- Comment Form -->
                 <div class="card my-4 comment-form" style="display: none;">
-                    <h5 class="card-header">Leave a Comment:</h5>
+                    <h5 class="card-header">{{ _('Leave a Comment:') }}</h5>
                     <div class="card-body">
                         <form action="{{ url_for('posts.add_comment') }}" method="POST">
                             {{ comment_form.hidden_tag() }}
@@ -43,7 +43,7 @@
                                 {{ comment_form.content(class="form-control form-control-lg") }}
                             </div>
                             <input type="hidden" name="post_id" value="{{ post.id }}">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">{{ _('Submit') }}</button>
                         </form>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                                             </div>
                                             <input type="hidden" name="post_id" value="{{ post.id }}">
                                             <input type="hidden" name="parent_comment_id" value="{{ comment.id }}">
-                                            <button type="submit" class="btn btn-secondary btn-sm">Reply</button>
+                                            <button type="submit" class="btn btn-secondary btn-sm">{{ _('Reply') }}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -103,15 +103,15 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel-{{ post.id }}">Are you sure you want to delete this post?</h5>
+                        <h5 class="modal-title" id="deleteModalLabel-{{ post.id }}">{{ _('Are you sure you want to delete this post?') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ _('Close') }}</button>
                         <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
-                            <input class="btn btn-danger" type="submit" value="Delete">
+                            <input class="btn btn-danger" type="submit" value="{{ _('Delete') }}">
                         </form>
                     </div>
                 </div>
