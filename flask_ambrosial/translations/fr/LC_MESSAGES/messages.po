@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 08:31+0000\n"
-"PO-Revision-Date: 2024-03-21 08:38+0000\n"
+"POT-Creation-Date: 2024-08-14 06:50+0000\n"
+"PO-Revision-Date: 2024-08-14 06:51+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -16,102 +16,295 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: main.py:67
+#: templates/about.html:5
+msgid "About Ambrosial"
+msgstr "À propos d'Ambrosial"
+
+#: templates/about.html:8
+msgid ""
+"Ambrosial is a sophisticated Flask-based web application designed to "
+"provide users with a delightful platform for culinary enthusiasts to "
+"connect, share, and explore a world of flavors. With a focus on "
+"simplicity, functionality, and elegance, Ambrosial offers a seamless "
+"experience for users to discover new recipes, share their culinary "
+"creations, and engage with like-minded individuals."
+msgstr ""
+"Ambrosial est une application web sophistiquée basée sur Flask, conçue "
+"pour offrir aux utilisateurs une plateforme agréable où les passionnés "
+"de cuisine peuvent se connecter, partager et explorer un monde de saveurs."
+" Avec un accent sur la simplicité, la fonctionnalité et l'élégance, "
+"Ambrosial offre une expérience fluide permettant de découvrir de nouvelles"
+" recettes, de partager leurs créations culinaires et d'échanger avec des "
+"personnes partageant les mêmes idées."
+
+#: templates/about.html:10
+msgid "Features"
+msgstr "Caractéristiques"
+
+#: templates/about.html:15
+msgid ""
+"User Registration and Authentication: Seamlessly sign up for an account "
+"and securely log in to access the platform's features."
+msgstr ""
+"Inscription et authentification des utilisateurs : Inscrivez-vous "
+"facilement pour un compte et connectez-vous en toute sécurité pour "
+"accéder aux fonctionnalités de la plateforme."
+
+#: templates/about.html:16
+msgid ""
+"Post Creation and Sharing: Create captivating posts about your favorite "
+"recipes, cooking techniques, and culinary experiences, and share them "
+"with the community."
+msgstr ""
+"Création et partage de publications : Créez des publications captivantes "
+"sur vos recettes préférées, techniques de cuisine et expériences "
+"culinaires, et partagez-les avec la communauté."
+
+#: templates/about.html:17
+msgid ""
+"Interactive User Interface: Enjoy a user-friendly interface that makes "
+"navigation effortless and content discovery enjoyable."
+msgstr ""
+"Interface utilisateur interactive : Profitez d'une interface conviviale "
+"qui rend la navigation aisée et la découverte de contenu agréable."
+
+#: templates/about.html:18
+msgid ""
+"Profile Management: Customize your profile with a personalized avatar and"
+" manage your account settings with ease."
+msgstr ""
+"Gestion de profil : Personnalisez votre profil avec un avatar personnel et"
+" gérez facilement les paramètres de votre compte."
+
+#: templates/about.html:19
+msgid ""
+"Password Reset Functionality: Easily reset your password in case you "
+"forget it, ensuring uninterrupted access to your account."
+msgstr ""
+"Fonctionnalité de réinitialisation de mot de passe : Réinitialisez "
+"facilement votre mot de passe en cas d'oubli, garantissant un accès "
+"continu à votre compte."
+
+#: templates/about.html:20
+msgid ""
+"Pagination: Effortlessly navigate through a vast collection of posts with"
+" the newly implemented pagination feature, enhancing your browsing "
+"experience."
+msgstr ""
+"Pagination : Naviguez facilement à travers une vaste collection de "
+"publications grâce à la nouvelle fonctionnalité de pagination, améliorant "
+"votre expérience de navigation."
+
+#: templates/about.html:23
+msgid "Technology Stack"
+msgstr "Technologies utilisées"
+
+#: templates/about.html:26
+msgid ""
+"Ambrosial leverages the power of Flask, a lightweight Python web "
+"framework, combined with other cutting-edge technologies, including "
+"SQLAlchemy for efficient database management, WTForms for form "
+"validation, and Bootstrap for sleek and responsive user interface design."
+msgstr ""
+"Ambrosial exploite la puissance de Flask, un framework web Python léger, "
+"combiné à d'autres technologies de pointe, notamment SQLAlchemy pour une "
+"gestion efficace de la base de données, WTForms pour la validation des "
+"formulaires et Bootstrap pour un design d'interface utilisateur élégant et "
+"réactif."
+
+#: templates/about.html:28
+msgid "Get Started"
+msgstr "Commencer"
+
+#: templates/about.html:31
+msgid ""
+"Ready to embark on a culinary journey with Ambrosial? Sign up for an "
+"account today and join our vibrant community of food enthusiasts! Whether"
+" you're a seasoned chef or an aspiring home cook, Ambrosial offers a "
+"welcoming space for you to share your passion for food and discover "
+"inspiration from others."
+msgstr ""
+"Prêt à commencer un voyage culinaire avec Ambrosial ? Inscrivez-vous dès "
+"aujourd'hui et rejoignez notre communauté dynamique de passionnés de "
+"cuisine ! Que vous soyez un chef expérimenté ou un cuisinier amateur, "
+"Ambrosial vous offre un espace accueillant pour partager votre passion "
+"pour la nourriture et découvrir l'inspiration chez les autres."
+
+#: templates/account.html:23
+msgid "Account Info"
+msgstr "Informations du compte"
+
+#: templates/chat.html:7
+msgid "Chat Room"
+msgstr "Salle de chat"
+
+#: templates/chat.html:12
+msgid "Type your message..."
+msgstr "Tapez votre message..."
+
+#: templates/chat.html:12
+msgid "Message"
+msgstr "Message"
+
+#: templates/chat.html:14
+msgid "Send"
+msgstr "Envoyer"
+
+#: templates/edit_comment.html:14 templates/home.html:13 templates/post.html:11
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: templates/home.html:14 templates/home.html:114 templates/post.html:12
+#: templates/post.html:111
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/home.html:26 templates/post.html:24
+msgid "Read more"
+msgstr "Lire la suite"
+
+#: templates/home.html:37 templates/post.html:36
+msgid "Leave a Comment:"
+msgstr "Laisser un commentaire :"
+
+#: templates/home.html:46 templates/post.html:45
+msgid "Submit"
+msgstr "Soumettre"
+
+#: templates/home.html:74 templates/post.html:73
+msgid "Reply"
+msgstr "Répondre"
+
+#: templates/home.html:106 templates/post.html:103
+msgid "Are you sure you want to delete this post?"
+msgstr "Êtes-vous sûr de vouloir supprimer cette publication ?"
+
+#: templates/home.html:112 templates/post.html:109
+msgid "Close"
+msgstr "Fermer"
+
+#: templates/layout.html:15
+msgid "Ambrosial - "
+msgstr "Ambrosial - "
+
+#: templates/layout.html:17 templates/layout.html:25
+msgid "Ambrosial"
+msgstr "Ambrosial"
+
+#: templates/layout.html:27
+msgid "Toggle navigation"
+msgstr "Basculer la navigation"
+
+#: templates/layout.html:33
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/layout.html:34
+msgid "About"
+msgstr "À propos"
+
+#: templates/layout.html:39
+msgid "New Post"
+msgstr "Nouvelle publication"
+
+#: templates/layout.html:40
+msgid "Account"
+msgstr "Compte"
+
+#: templates/layout.html:41
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: main.py:68
-msgid "Account"
-msgstr "Mon compte"
+#: templates/layout.html:44
+msgid "Chat"
+msgstr "Chat"
 
-#: main.py:69
-msgid "Success!"
-msgstr "Bravo !"
-
-#: main.py:70
-msgid "You are registered."
-msgstr "Vous êtes inscrit."
-
-#: main.py:71
-msgid "Please enter a valid email address."
-msgstr "Veuillez saisir une adresse e-mail valide."
-
-#: templates/index.html:23
+#: templates/layout.html:47
 msgid "Login"
 msgstr "Connexion"
 
-#: templates/index.html:24
-msgid "Sign Up"
+#: templates/layout.html:48
+msgid "Register"
 msgstr "S'inscrire"
 
-#: templates/index.html:44
-msgid "Welcome to our Translation Agency"
-msgstr "Bienvenue sur le site de notre agence de traduction"
+#: templates/layout.html:87
+msgid "Stay Organized"
+msgstr "Restez organisé"
 
-#: templates/index.html:45
-msgid "We provide professional translation services"
-msgstr "Nous fournissons des services de traduction professionnels"
+#: templates/layout.html:88
+msgid "Enhance your culinary journey with these useful features:"
+msgstr "Améliorez votre parcours culinaire avec ces fonctionnalités utiles :"
 
-#: templates/index.html:57
-msgid "Our Services"
-msgstr "Nos Services"
+#: templates/layout.html:91
+msgid "Event Calendar:"
+msgstr "Calendrier des événements :"
 
-#: templates/index.html:60
-msgid "Translation Services"
-msgstr "Services de Traduction"
+#: templates/layout.html:91
+msgid ""
+"Plan your cooking sessions, meal preps, and grocery shopping trips "
+"effortlessly."
+msgstr ""
+"Planifiez vos sessions de cuisine, vos préparations de repas et vos "
+"courses sans effort."
 
-#: templates/index.html:61
-msgid "Accurate and professional translation in multiple languages."
-msgstr "Traduction précise et professionnelle dans plusieurs langues."
+#: templates/layout.html:94
+msgid "Weather Forecast:"
+msgstr "Prévisions météorologiques :"
 
-#: templates/index.html:64
-msgid "Localization Services"
-msgstr "Services de Localisation"
+#: templates/layout.html:94
+msgid ""
+"Check the weather forecast to adjust your cooking plans according to the "
+"conditions outside."
+msgstr ""
+"Consultez les prévisions météorologiques pour adapter vos plans de cuisine"
+" en fonction des conditions extérieures."
 
-#: templates/index.html:65
-msgid "Adaptation of content to specific regions and cultures."
-msgstr "Adaptation du contenu à des régions et des cultures spécifiques."
+#: templates/layout.html:97
+msgid "Location Services:"
+msgstr "Services de localisation :"
 
-#: templates/index.html:68
-msgid "Interpretation Services"
-msgstr "Services d'Interprétation"
+#: templates/layout.html:97
+msgid ""
+"Discover nearby grocery stores, farmer's markets, and culinary events "
+"with integrated maps."
+msgstr ""
+"Découvrez les épiceries, marchés de producteurs et événements culinaires à"
+" proximité grâce aux cartes intégrées."
 
-#: templates/index.html:69
-msgid "Real-time language interpretation for meetings and events."
-msgstr "Interprétation simultanée pour réunions et événements."
+#: templates/login.html:9
+msgid "Log In"
+msgstr "Connexion"
 
-#: templates/index.html:72
-msgid "Proofreading Services"
-msgstr "Services de Relecture"
+#: templates/login.html:51
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié ?"
 
-#: templates/index.html:73
-msgid "Thorough review and correction of written content."
-msgstr "Révision approfondie et correction de contenu écrit."
+#: templates/login.html:59
+msgid "Need An Account?"
+msgstr "Besoin d'un compte ?"
 
-#: templates/index.html:76
-msgid "Transcription Services"
-msgstr "Services de Transcription"
+#: templates/login.html:59
+msgid "Sign Up Now"
+msgstr "Inscrivez-vous maintenant"
 
-#: templates/index.html:77
-msgid "Conversion of audio or video recordings into written text."
-msgstr "Conversion d'enregistrements audio ou vidéo en texte écrit."
+#: templates/register.html:13
+msgid "Join Today"
+msgstr "Rejoignez-nous aujourd'hui"
 
-#: templates/index.html:89
-msgid "Sign up for our Newsletter"
-msgstr "Inscrivez-vous à notre Newsletter"
+#: templates/register.html:98
+msgid "Already Have An Account?"
+msgstr "Vous avez déjà un compte ?"
 
-#: templates/index.html:91
-msgid "Enter your email"
-msgstr "Entrez votre e-mail"
+#: templates/register.html:98
+msgid "Sign In"
+msgstr "Connexion"
 
-#: templates/index.html:92
-msgid "Subscribe"
-msgstr "S'abonner"
+#: templates/reset_request.html:9 templates/reset_token.html:9
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
 
-msgid "© 2024 Translation Agency. All rights reserved."
-msgstr "© 2024 Agence de traduction. Tous droits réservés."
-
-msgid "Agency Logo"
-msgstr "Logo de l'agence"
+#: templates/user_posts.html:3
+msgid "Post by"
+msgstr "Publication par"

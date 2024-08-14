@@ -1,17 +1,18 @@
-# Translations template for PROJECT.
+# Igbo translations for PROJECT.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-14 06:50+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-08-14 06:54+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ig\n"
+"Language-Team: ig <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +20,7 @@ msgstr ""
 
 #: templates/about.html:5
 msgid "About Ambrosial"
-msgstr ""
+msgstr "Banyere Ambrosial"
 
 #: templates/about.html:8
 msgid ""
@@ -30,16 +31,23 @@ msgid ""
 "experience for users to discover new recipes, share their culinary "
 "creations, and engage with like-minded individuals."
 msgstr ""
+"Ambrosial bụ ngwa weebụ na-eji Flask arụ ọrụ nke e mere iji nye "
+"ndị ọrụ ikpo okwu dị ịtụnanya maka ndị na-ahụ n'anya nri na-ekekọrịta, jikọta, "
+"ma hụ ụwa nke ụtọ n'anya. Na-elekwasị anya na nfe, arụmọrụ, na mma, Ambrosial na-enye "
+"enweghị nsogbu ahụmịhe maka ndị ọrụ iji chọpụta azụma azụ ọhụrụ, kesaa ihe ha kere na nlekọta "
+"gosi na-emepe emepe ndị mmadụ dị ka ha."
 
 #: templates/about.html:10
 msgid "Features"
-msgstr ""
+msgstr "Atụmatụ"
 
 #: templates/about.html:15
 msgid ""
 "User Registration and Authentication: Seamlessly sign up for an account "
 "and securely log in to access the platform's features."
 msgstr ""
+"Ndenye aha na Nkwenye Onye ọrụ: Debanye aha maka akaụntụ na-enweghị nsogbu "
+"ma banye n'ike n'ike iji nweta atụmatụ nke ikpo okwu ahụ."
 
 #: templates/about.html:16
 msgid ""
@@ -47,24 +55,32 @@ msgid ""
 "recipes, cooking techniques, and culinary experiences, and share them "
 "with the community."
 msgstr ""
+"Nkwalite Posts na Kekọrịta: Kere posts na-adọrọ mmasị gbasara nri ị "
+"na-amasị gị, usoro esi nri, na ahụmịhe na kichin, ma kesaa ha "
+"na obodo."
 
 #: templates/about.html:17
 msgid ""
 "Interactive User Interface: Enjoy a user-friendly interface that makes "
 "navigation effortless and content discovery enjoyable."
 msgstr ""
+"Ọhụrụ Interface Onye ọrụ: Nwee obi ụtọ na interface onye ọrụ na-emekọ ihe ọnụ "
+"na-eme ka ị na-agagharị n'ime saịtị ahụ enweghị nsogbu ma nwee obi ụtọ na ịchọta ọdịnaya."
 
 #: templates/about.html:18
 msgid ""
 "Profile Management: Customize your profile with a personalized avatar and"
 " manage your account settings with ease."
 msgstr ""
+"Nlekọta Profaili: Hazie profaịlụ gị na avatar nke gị ma hazie ntọala akaụntụ gị n'ụzọ dị mfe."
 
 #: templates/about.html:19
 msgid ""
 "Password Reset Functionality: Easily reset your password in case you "
 "forget it, ensuring uninterrupted access to your account."
 msgstr ""
+"Nrụpụta Nhichapụ Paswọọdụ: Ị nwere ike ihichapụ paswọọdụ gị n'ụzọ dị mfe "
+"ọ bụrụ na ị chefuru ya, na-ekwe nkwa na ị ga-enweta akaụntụ gị na-enweghị nsogbu."
 
 #: templates/about.html:20
 msgid ""
@@ -72,10 +88,12 @@ msgid ""
 " the newly implemented pagination feature, enhancing your browsing "
 "experience."
 msgstr ""
+"Paginations: Na-agagharị n'ụzọ dị mfe site n'ọtụtụ posts na "
+"paginations ọhụrụ e tinye, na-eme ka ahụmịhe nchọgharị gị ka mma."
 
 #: templates/about.html:23
 msgid "Technology Stack"
-msgstr ""
+msgstr "Teknụzụ Na-akwụ ụgwọ"
 
 #: templates/about.html:26
 msgid ""
@@ -84,10 +102,13 @@ msgid ""
 "SQLAlchemy for efficient database management, WTForms for form "
 "validation, and Bootstrap for sleek and responsive user interface design."
 msgstr ""
+"Ambrosial na-eji ike Flask eme ihe, nke bu usoro weebụ Python dị mfe, "
+"jikọtara ya na teknụzụ ndị ọzọ na-esi ike, gụnyere SQLAlchemy maka njikwa data dị mfe, "
+"WTForms maka nkwenye nke form, na Bootstrap maka nhazi interface onye ọrụ na-emegharị ngwa ngwa na mma."
 
 #: templates/about.html:28
 msgid "Get Started"
-msgstr ""
+msgstr "Malite"
 
 #: templates/about.html:31
 msgid ""
@@ -97,175 +118,181 @@ msgid ""
 "welcoming space for you to share your passion for food and discover "
 "inspiration from others."
 msgstr ""
+"Ị kwadebere ịmalite njem na kichin na Ambrosial? Debanye aha maka akaụntụ taa ma jikwaa na "
+"obodo anyị nke ndị na-ahụ n'anya nri! Ma ọ bụ na ị bụ onye nri mmeri ma ọ bụ onye na-amụta esi nri n'ụlọ, Ambrosial na-enye ebe a nabatara gị ka ị kesaa "
+"nkwado gị maka nri ma chọta mkpalite site n'aka ndị ọzọ."
 
 #: templates/account.html:23
 msgid "Account Info"
-msgstr ""
+msgstr "Ozi Akaụntụ"
 
 #: templates/chat.html:7
 msgid "Chat Room"
-msgstr ""
+msgstr "Ụlọ Mkparịta ụka"
 
 #: templates/chat.html:12
 msgid "Type your message..."
-msgstr ""
+msgstr "Tinye ozi gị..."
 
 #: templates/chat.html:12
 msgid "Message"
-msgstr ""
+msgstr "Ozi"
 
 #: templates/chat.html:14
 msgid "Send"
-msgstr ""
+msgstr "Zipu"
 
 #: templates/edit_comment.html:14 templates/home.html:13 templates/post.html:11
 msgid "Update"
-msgstr ""
+msgstr "Melite"
 
 #: templates/home.html:14 templates/home.html:114 templates/post.html:12
 #: templates/post.html:111
 msgid "Delete"
-msgstr ""
+msgstr "Hichapụ"
 
 #: templates/home.html:26 templates/post.html:24
 msgid "Read more"
-msgstr ""
+msgstr "Gụọkwuo"
 
 #: templates/home.html:37 templates/post.html:36
 msgid "Leave a Comment:"
-msgstr ""
+msgstr "Hapụ okwu:"
 
 #: templates/home.html:46 templates/post.html:45
 msgid "Submit"
-msgstr ""
+msgstr "Nyefee"
 
 #: templates/home.html:74 templates/post.html:73
 msgid "Reply"
-msgstr ""
+msgstr "Azaghachi"
 
 #: templates/home.html:106 templates/post.html:103
 msgid "Are you sure you want to delete this post?"
-msgstr ""
+msgstr "Ị nwere ntụkwasị obi na ịchọrọ ihichapụ post a?"
 
 #: templates/home.html:112 templates/post.html:109
 msgid "Close"
-msgstr ""
+msgstr "Mechie"
 
 #: templates/layout.html:15
 msgid "Ambrosial - "
-msgstr ""
+msgstr "Ambrosial - "
 
 #: templates/layout.html:17 templates/layout.html:25
 msgid "Ambrosial"
-msgstr ""
+msgstr "Ambrosial"
 
 #: templates/layout.html:27
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Gbanwee mbanye"
 
 #: templates/layout.html:33
 msgid "Home"
-msgstr ""
+msgstr "Ụlọ"
 
 #: templates/layout.html:34
 msgid "About"
-msgstr ""
+msgstr "Banyere"
 
 #: templates/layout.html:39
 msgid "New Post"
-msgstr ""
+msgstr "Post Ọhụrụ"
 
 #: templates/layout.html:40
 msgid "Account"
-msgstr ""
+msgstr "Akaụntụ"
 
 #: templates/layout.html:41
 msgid "Logout"
-msgstr ""
+msgstr "Wepụ Akaụntụ"
 
 #: templates/layout.html:44
 msgid "Chat"
-msgstr ""
+msgstr "Mkparịta ụka"
 
 #: templates/layout.html:47
 msgid "Login"
-msgstr ""
+msgstr "Banye"
 
 #: templates/layout.html:48
 msgid "Register"
-msgstr ""
+msgstr "Debanye aha"
 
 #: templates/layout.html:87
 msgid "Stay Organized"
-msgstr ""
+msgstr "Nọgide na Nchịkwa"
 
 #: templates/layout.html:88
 msgid "Enhance your culinary journey with these useful features:"
-msgstr ""
+msgstr "Mee ka njem gị na kichin ka mma site na atụmatụ ndị bara uru ndị a:"
 
 #: templates/layout.html:91
 msgid "Event Calendar:"
-msgstr ""
+msgstr "Kalenda Ihe Ọhụrụ:"
 
 #: templates/layout.html:91
 msgid ""
 "Plan your cooking sessions, meal preps, and grocery shopping trips "
 "effortlessly."
 msgstr ""
+"Hazie oge esi nri gị, nkwadebe nri, na njem ịzụ ahịa nri n'ụzọ dị mfe."
 
 #: templates/layout.html:94
 msgid "Weather Forecast:"
-msgstr ""
+msgstr "Ihe Ọhụhụ Ihu Igwe:"
 
 #: templates/layout.html:94
 msgid ""
 "Check the weather forecast to adjust your cooking plans according to the "
 "conditions outside."
 msgstr ""
+"Lelee ihe ọhụhụ ihu igwe ka ị hazie atụmatụ esi nri gị dị ka ọnọdụ dị n'èzí si dị."
 
 #: templates/layout.html:97
 msgid "Location Services:"
-msgstr ""
+msgstr "Ọrụ Ebe:"
 
 #: templates/layout.html:97
 msgid ""
 "Discover nearby grocery stores, farmer's markets, and culinary events "
 "with integrated maps."
 msgstr ""
+"Chọpụta ụlọ ahịa nri dị nso, ahịa ndị ọrụ ugbo, na ihe ndị na-eme na kichin "
+"site na map ndị etinye n'otu."
 
 #: templates/login.html:9
 msgid "Log In"
-msgstr ""
+msgstr "Banye"
 
 #: templates/login.html:51
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Chefuru Paswọọdụ?"
 
 #: templates/login.html:59
 msgid "Need An Account?"
-msgstr ""
+msgstr "Chọrọ Akaụntụ?"
 
 #: templates/login.html:59
 msgid "Sign Up Now"
-msgstr ""
+msgstr "Debanye Ugbu a"
 
 #: templates/register.html:13
 msgid "Join Today"
-msgstr ""
+msgstr "Jikọọ Taa"
 
 #: templates/register.html:98
 msgid "Already Have An Account?"
-msgstr ""
+msgstr "Ị nwere Akaụntụ?"
 
 #: templates/register.html:98
 msgid "Sign In"
-msgstr ""
+msgstr "Banye"
 
 #: templates/reset_request.html:9 templates/reset_token.html:9
 msgid "Reset Password"
-msgstr ""
+msgstr "Tọghata Paswọọdụ"
 
 #: templates/user_posts.html:3
 msgid "Post by"
-msgstr ""
-
+msgstr "Post site n'aka"

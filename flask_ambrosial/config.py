@@ -19,6 +19,6 @@ class Config:
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')  # Email password from environment variable
 
     # Internationalization (i18n) settings
-    LANGUAGES = ['en', 'fr']
+    LANGUAGES = ['en', 'fr', 'ha', 'ig', 'yo']
     BABEL_DEFAULT_LOCALE = 'en'  # Default locale
     BABEL_TRANSLATION_DIRECTORIES = './translations'
