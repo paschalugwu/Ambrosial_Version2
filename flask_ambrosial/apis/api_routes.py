@@ -13,10 +13,9 @@ def get_organizer_data():
     Returns:
         jsonify: JSON response containing the fetched and organized data.
     """
-    # Your logic to fetch and organize data
-    # Dummy data for demonstration
+    # Organize the fetched data
     data = {
-        'event_calendar': [],  # Make this an array
+        'event_calendar': [],
         'weather_forecast': '',
         'location_services': ''
     }
