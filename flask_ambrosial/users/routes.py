@@ -124,16 +124,3 @@ def setlang(lang):
         logging.debug(f"Invalid language requested: {lang}")
     logging.debug(f"Redirecting to: {url_for('main.home')}")
     return redirect(url_for('main.home'))
-
-
-@users.route("/post/<int:post_id>/comment", methods=['POST'])
-@login_required
-def comment_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    form = CommentForm()
-    if form.validate_on_submit():
-        comment = Comment(content=form.content.data, author=current_user, post=post)
-        db.session.add(comment)
-        db.session.commit()
-        flash('Your comment has been added!', 'success')
-    return redirect(url_for('posts.post', post_id=post.id))

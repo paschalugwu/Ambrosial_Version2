@@ -18,6 +18,10 @@
     </div>
 </div>
 
+<script>
+    // Pass the username to the JavaScript context
+    const username = "{{ username }}";
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
 <script src="{{ url_for('static', filename='js/chats.js') }}"></script>
 {% endblock %}

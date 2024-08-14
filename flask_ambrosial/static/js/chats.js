@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Join the chat room
     socket.emit('join', {
-        'username': '{{ username }}',
+        'username': username,  // Use the username variable from the HTML context
         'room': 'default'
     });
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const messageElement = document.createElement('div');
         const timestamp = new Date().toLocaleTimeString();
 
-        if (data.msg.startsWith('{{ username }}:')) {
+        if (data.msg.startsWith(username + ':')) {  // Use the username variable from the HTML context
             messageElement.classList.add('text-right', 'bg-primary', 'text-white', 'rounded', 'p-2', 'mb-2');
             messageElement.style.maxWidth = '60%';
             messageElement.style.marginLeft = 'auto';
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const msg = messageInput.value;
         if (msg.trim() !== "") {
             socket.emit('message', {
-                'username': '{{ username }}',
+                'username': username,  // Use the username variable from the HTML context
                 'room': 'default',
                 'msg': msg
             });
