@@ -7,9 +7,11 @@ email_validator
 Flask
 Flask-Babel
 Flask-Bcrypt
+flask-cors
 Flask-Login
 Flask-Mail
 Flask-Migrate
+flask-socketio
 Flask-SQLAlchemy
 Flask-WTF
 greenlet
@@ -21,6 +23,7 @@ MarkupSafe
 pillow
 pip
 pycodestyle
+python-dotenv
 setuptools
 SQLAlchemy
 typing_extensions

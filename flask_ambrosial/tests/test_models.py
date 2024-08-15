@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 
+# test_models.py
+
 import unittest
 from flask import current_app
 from flask_ambrosial import create_app, db
 from flask_ambrosial.models import User, Post, Comment, ChatMessage
+from flask_ambrosial.config import TestingConfig
 from datetime import datetime, timezone
 
 class ModelTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app('testing')
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
         db.create_all()

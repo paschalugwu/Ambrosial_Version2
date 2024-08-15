@@ -29,53 +29,28 @@ def post_message():
     db.session.commit()
     return jsonify({'id': chat_message.id, 'username': current_user.username, 'content': data['msg']}), 201
 
-@chat.route("/api/messages/<int:message_id>", methods=['PUT'])
-@login_required
-def update_message(message_id):
-    data = request.json
-    chat_message = ChatMessage.query.get_or_404(message_id)
-    if chat_message.user_id != current_user.id:
-        return jsonify({'error': 'Unauthorized'}), 403
-    chat_message.content = data['msg']
-    db.session.commit()
-    return jsonify({'id': chat_message.id, 'username': current_user.username, 'content': data['msg']}), 200
-
-@chat.route("/api/messages/<int:message_id>", methods=['DELETE'])
-@login_required
-def delete_message(message_id):
-    chat_message = ChatMessage.query.get_or_404(message_id)
-    if chat_message.user_id != current_user.id:
-        return jsonify({'error': 'Unauthorized'}), 403
-    db.session.delete(chat_message)
-    db.session.commit()
-    return jsonify({'result': 'Message deleted'}), 200
-
 @socketio.on('join')
 def handle_join(data):
     room = data['room']
-    logging.debug(f"{data['username']} is joining room {room}")
+    username = data['username']
     join_room(room)
-    emit('message', {'msg': f"{data['username']} has entered the room."}, room=room)
+    emit('message', {'msg': f'{username} has entered the room.'}, room=room)
+    print(f"Emitted join message for {username} to room {room}")  # Debugging statement
 
 @socketio.on('leave')
 def handle_leave(data):
     room = data['room']
-    logging.debug(f"{data['username']} is leaving room {room}")
+    username = data['username']
+    print(f"User {username} is leaving room {room}")  # Debugging statement
     leave_room(room)
-    emit('message', {'msg': f"{data['username']} has left the room."}, room=room)
+    emit('message', {'msg': f'{username} has left the room.'}, room=room)
+    print(f"Emitted leave message for {username} from room {room}")  # Debugging statement
 
 @socketio.on('message')
 def handle_message(data):
     room = data['room']
     msg = data['msg']
     username = data['username']
-    logging.debug(f"Message from {username} in room {room}: {msg}")
-    if current_user.is_authenticated:
-        chat_message = ChatMessage(content=msg, user_id=current_user.id)
-        db.session.add(chat_message)
-        db.session.commit()
-        logging.debug(f"Message stored in database: {msg}")
-        send({'msg': f"{username}: {msg}"}, room=room)
-    else:
-        logging.debug("User not authenticated")
-        send({'msg': 'User not authenticated'}, room=room)
+    print(f"User {username} sent message to room {room}: {msg}")  # Debugging statement
+    emit('message', {'msg': f'{username}: {msg}'}, room=room)
+    print(f"Emitted message for {username} to room {room}: {msg}")  # Debugging statement

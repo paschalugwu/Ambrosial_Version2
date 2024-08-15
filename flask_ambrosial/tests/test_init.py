@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import unittest
-from flask import Flask, session, request
+from flask import Flask, session, request, render_template, template_rendered
 from flask_ambrosial import create_app, db, bcrypt, login_manager, mail, migrate, socketio, babel
 from flask_ambrosial.config import Config
+from contextlib import contextmanager
 
 class TestFlaskApp(unittest.TestCase):
 
@@ -44,22 +45,42 @@ class TestFlaskApp(unittest.TestCase):
         self.assertIn('posts', self.app.blueprints)
         self.assertIn('main', self.app.blueprints)
         self.assertIn('errors', self.app.blueprints)
-        self.assertIn('api_bp', self.app.blueprints)
+        self.assertIn('api', self.app.blueprints)
         self.assertIn('chat', self.app.blueprints)
 
     def test_setlang_route(self):
         """Test if the /setlang route works as expected."""
+        LANGUAGES = ['en', 'fr', 'ha', 'ig', 'yo']
         with self.client as c:
-            response = c.get('/setlang?lang=es', follow_redirects=True)
-            self.assertEqual(session['lang'], 'es')
-            self.assertEqual(response.status_code, 200)
+            for lang in LANGUAGES:
+                response = c.get(f'/setlang?lang={lang}', follow_redirects=True)
+                with c.session_transaction() as sess:
+                    self.assertEqual(sess['lang'], lang)
+                self.assertEqual(response.status_code, 200)
+
+    @contextmanager
+    def captured_templates(self, app):
+        recorded = []
+
+        def record(sender, template, context, **extra):
+            recorded.append((template, context))
+
+        template_rendered.connect(record, app)
+        try:
+            yield recorded
+        finally:
+            template_rendered.disconnect(record, app)
 
     def test_context_processor(self):
         """Test if the context processor injects the correct functions."""
-        with self.app.test_request_context('/'):
-            context = self.app.process_response(self.app.response_class())
-            self.assertIn('_', context.context)
-            self.assertIn('get_locale', context.context)
+        with self.captured_templates(self.app) as templates:
+            with self.app.test_request_context('/'):
+                render_template('chat.html')
+                template, context = templates[0]
+
+                # Check if the context processor injected the correct functions
+                self.assertIn('_', context)
+                self.assertIn('current_user', context)
 
 if __name__ == '__main__':
     unittest.main()

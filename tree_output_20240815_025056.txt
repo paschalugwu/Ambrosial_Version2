@@ -1,0 +1,118 @@
+.
+├── AUTHORS.md
+├── README.md
+├── TOOLS.md
+├── flask_ambrosial
+│   ├── README.md
+│   ├── __init__.py
+│   ├── apis
+│   │   ├── api_routes.py
+│   │   └── tests
+│   │       └── test_api_routes.py
+│   ├── babel.cfg
+│   ├── chats
+│   │   ├── routes.py
+│   │   └── tests
+│   │       └── test_routes.py
+│   ├── config.py
+│   ├── errors
+│   │   ├── __init__.py
+│   │   ├── handlers.py
+│   │   └── tests
+│   │       └── test_handlers.py
+│   ├── main
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   │   └── tests
+│   │       └── test_routes.py
+│   ├── messages.pot
+│   ├── models.py
+│   ├── posts
+│   │   ├── __init__.py
+│   │   ├── forms.py
+│   │   ├── routes.py
+│   │   └── tests
+│   │       ├── test_forms.py
+│   │       └── test_routes.py
+│   ├── static
+│   │   ├── js
+│   │   │   ├── apis.js
+│   │   │   ├── chats.js
+│   │   │   ├── home-comments.js
+│   │   │   └── post-comments.js
+│   │   ├── main.css
+│   │   ├── post_pics
+│   │   │   ├── 0414ed28980a6afb.jpg
+│   │   │   ├── 122c7cefe5f3fa13.jpg
+│   │   │   ├── 186916cde40e72ce.jpg
+│   │   │   └── f64d8aab113b14aa.jpg
+│   │   └── profile_pics
+│   │       ├── 07b6654c16837071.jpg
+│   │       └── default.jpg
+│   ├── templates
+│   │   ├── about.html
+│   │   ├── account.html
+│   │   ├── chat.html
+│   │   ├── create_post.html
+│   │   ├── edit_comment.html
+│   │   ├── errors
+│   │   │   ├── 403.html
+│   │   │   ├── 404.html
+│   │   │   └── 500.html
+│   │   ├── home.html
+│   │   ├── layout.html
+│   │   ├── login.html
+│   │   ├── post.html
+│   │   ├── register.html
+│   │   ├── reset_request.html
+│   │   ├── reset_token.html
+│   │   └── user_posts.html
+│   ├── tests
+│   │   ├── test_config.py
+│   │   ├── test_init.py
+│   │   └── test_models.py
+│   ├── translations
+│   │   ├── fr
+│   │   │   └── LC_MESSAGES
+│   │   │       ├── messages.mo
+│   │   │       └── messages.po
+│   │   ├── ha
+│   │   │   └── LC_MESSAGES
+│   │   │       ├── messages.mo
+│   │   │       └── messages.po
+│   │   ├── ig
+│   │   │   └── LC_MESSAGES
+│   │   │       ├── messages.mo
+│   │   │       └── messages.po
+│   │   └── yo
+│   │       └── LC_MESSAGES
+│   │           ├── messages.mo
+│   │           └── messages.po
+│   └── users
+│       ├── __init__.py
+│       ├── forms.py
+│       ├── routes.py
+│       ├── tests
+│       │   ├── test_forms.py
+│       │   ├── test_routes.py
+│       │   └── test_utils.py
+│       └── utils.py
+├── instance
+│   └── site.db
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       ├── 46a9f62e3a58_remove_reaction_model.py
+│       ├── 65a1a83e7d72_create_reply_table.py
+│       ├── ba1b110f5166_initial_migration.py
+│       ├── c54b9caea067_create_reaction_table.py
+│       ├── cc74f4bb722a_create_comment_table.py
+│       └── d218bbee1d87_add_parent_id_column_to_comment_table.py
+├── package-lock.json
+├── package.json
+├── requirements.txt
+├── run.py
+└── tree_output_20240815_025056.txt
