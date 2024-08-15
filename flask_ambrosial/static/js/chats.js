@@ -32,19 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
         chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
     });
 
-    // Listen for user leaving the room
-    socket.on('leave', function(data) {
-        const messageElement = document.createElement('div');
-        const timestamp = new Date().toLocaleTimeString();
-        messageElement.classList.add('text-left', 'bg-warning', 'text-dark', 'rounded', 'p-2', 'mb-2');
-        messageElement.style.maxWidth = '60%';
-        messageElement.style.marginRight = 'auto';
-        messageElement.textContent = `[${timestamp}] ${data.msg}`;
-
-        chatBox.appendChild(messageElement);
-        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
-    });
-
     // Handle form submission
     chatForm.addEventListener('submit', function(event) {
         event.preventDefault();

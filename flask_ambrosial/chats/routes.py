@@ -37,15 +37,6 @@ def handle_join(data):
     emit('message', {'msg': f'{username} has entered the room.'}, room=room)
     print(f"Emitted join message for {username} to room {room}")  # Debugging statement
 
-@socketio.on('leave')
-def handle_leave(data):
-    room = data['room']
-    username = data['username']
-    print(f"User {username} is leaving room {room}")  # Debugging statement
-    leave_room(room)
-    emit('message', {'msg': f'{username} has left the room.'}, room=room)
-    print(f"Emitted leave message for {username} from room {room}")  # Debugging statement
-
 @socketio.on('message')
 def handle_message(data):
     room = data['room']

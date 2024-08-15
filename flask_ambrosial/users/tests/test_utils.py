@@ -3,9 +3,21 @@
 import os
 import unittest
 from unittest.mock import patch, MagicMock
+from flask import current_app
+from flask_ambrosial import create_app  # Import your app factory
 from flask_ambrosial.users.utils import save_picture
 
 class TestUtils(unittest.TestCase):
+
+    def setUp(self):
+        # Set up the Flask app context
+        self.app = create_app()  # Replace with the correct app factory method
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+
+    def tearDown(self):
+        # Pop the Flask app context
+        self.app_context.pop()
 
     @patch('flask_ambrosial.users.utils.current_app')
     @patch('flask_ambrosial.users.utils.Image.open')

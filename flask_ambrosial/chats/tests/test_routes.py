@@ -71,17 +71,6 @@ class ChatRoutesTestCase(unittest.TestCase):
         self.assertEqual(event['name'], 'message')
         self.assertIn('testuser has entered the room.', event['args']['msg'])
 
-    def test_handle_leave(self):
-        self.login()
-        self.socketio_client.emit('join', {'room': 'default', 'username': 'testuser'})
-        time.sleep(1)  # Ensure the join operation is completed
-        self.socketio_client.emit('leave', {'room': 'default', 'username': 'testuser'})
-        event = self.wait_for_event(self.socketio_client, 'message')
-        print("Received in test_handle_leave:", event)  # Debugging statement
-        self.assertIsNotNone(event)
-        self.assertEqual(event['name'], 'message')
-        self.assertIn('testuser has left the room.', event['args']['msg'])
-
     def test_handle_message(self):
         self.login()
         self.socketio_client.emit('join', {'room': 'default', 'username': 'testuser'})

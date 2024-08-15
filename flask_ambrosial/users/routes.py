@@ -44,6 +44,7 @@ def login():
 @users.route("/logout")
 def logout():
     logout_user()
+    flash('You have been logged out', 'success')
     return redirect(url_for('main.home'))
 
 

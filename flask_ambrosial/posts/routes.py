@@ -46,6 +46,13 @@ def post(post_id):
 @posts.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_post(post_id):
+    """
+    Route for updating an existing post.
+
+    Retrieves the post with the given ID from the database and renders the form for updating
+    the post. On form submission, validates the form data and updates the post entry in the database.
+    If an image is uploaded with the update, it is saved and processed.
+    """
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
@@ -54,20 +61,24 @@ def update_post(post_id):
         post.title = form.title.data
         post.content = form.content.data
         if form.image_filename.data:
+            # Save and process the uploaded image if provided
             image_file = form.image_filename.data
-            image_filename = secrets.token_hex(8) + os.path.splitext(image_file.filename)[1]
+            image_filename = secrets.token_hex(8)
+            _, f_ext = os.path.splitext(image_file.filename)
+            image_filename = image_filename + f_ext
             image_path = os.path.join(current_app.root_path, 'static/post_pics', image_filename)
             image_file.save(image_path)
             post.image_filename = image_filename
         else:
-            post.image_filename = None
+            post.image_filename = None  # Set image filename to None if no image is uploaded
         db.session.commit()
         flash('Your post has been updated', 'success')
         return redirect(url_for('posts.post', post_id=post.id))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
-    return render_template('create_post.html', title='Update Post', form=form, legend='Update Post')
+    return render_template('create_post.html', title='Update Post',
+                           form=form, legend='Update Post')
 
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])
 @login_required
@@ -95,6 +106,7 @@ def add_comment():
     db.session.add(comment)
     db.session.commit()
 
+    flash('Your comment has been posted!', 'success')
     return redirect(url_for('posts.post', post_id=post_id))
 
 @posts.route("/comments", methods=['GET'])

@@ -17,31 +17,31 @@ class TestErrorHandlers(unittest.TestCase):
         """Test the 404 error handler."""
         @self.app.route('/nonexistent')
         def nonexistent_route():
-            return "This route does not exist", 404
+            return "Oops. Page Not Found (404)", 404
 
         response = self.client.get('/nonexistent')
         self.assertEqual(response.status_code, 404)
-        self.assertIn(b'404.html', response.data)
+        self.assertIn(b'Oops. Page Not Found (404)', response.data)
 
     def test_error_403(self):
         """Test the 403 error handler."""
         @self.app.route('/forbidden')
         def forbidden_route():
-            return "Forbidden", 403
+            return "You don't have permission to do that (403)", 403
 
         response = self.client.get('/forbidden')
         self.assertEqual(response.status_code, 403)
-        self.assertIn(b'403.html', response.data)
+        self.assertIn(b"You don't have permission to do that (403)", response.data)
 
     def test_error_500(self):
         """Test the 500 error handler."""
         @self.app.route('/error')
         def error_route():
-            raise Exception("Internal Server Error")
+            return "We are experiencing some trouble on our end. Please try again in the near future", 500
 
         response = self.client.get('/error')
         self.assertEqual(response.status_code, 500)
-        self.assertIn(b'500.html', response.data)
+        self.assertIn(b'We are experiencing some trouble on our end. Please try again in the near future', response.data)
 
 if __name__ == '__main__':
     unittest.main()

@@ -3,10 +3,11 @@
 import unittest
 from flask import Flask
 from flask_ambrosial import create_app, db
+from flask_ambrosial.config import TestingConfig
 
 class MainRoutesTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app('testing')
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
         db.create_all()
@@ -20,7 +21,7 @@ class MainRoutesTestCase(unittest.TestCase):
     def test_home_route(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'home.html', response.data)
+        self.assertIn(b'Ambrosial', response.data)  # Check for the title or any unique identifier
 
     def test_about_route(self):
         response = self.client.get('/about')
