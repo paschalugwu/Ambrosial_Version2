@@ -13,17 +13,31 @@ class TestRegistrationForm(unittest.TestCase):
     def setUp(self):
         self.app = Flask(__name__)
         self.app.config.from_object(TestingConfig)
-        db.init_app(self.app)  # Initialize db with app
         self.app_context = self.app.app_context()
         self.app_context.push()
-        with self.app.app_context():
-            db.create_all()
+        db.init_app(self.app)
+        db.create_all()
         self.form = RegistrationForm()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
+
+    def test_fields_exist(self):
+        self.assertTrue(hasattr(self.form, 'username'))
+        self.assertTrue(hasattr(self.form, 'email'))
+        self.assertTrue(hasattr(self.form, 'password'))
+        self.assertTrue(hasattr(self.form, 'confirm_password'))
+        self.assertTrue(hasattr(self.form, 'submit'))
+
+    def test_valid_data(self):
+        form = RegistrationForm(username="TestUser", email="test@example.com", password="password", confirm_password="password")
+        self.assertTrue(form.validate())
+
+    def test_invalid_data(self):
+        form = RegistrationForm(username="", email="invalid", password="pass", confirm_password="different")
+        self.assertFalse(form.validate())
 
 class TestLoginForm(unittest.TestCase):
     def setUp(self):
@@ -62,12 +76,31 @@ class TestUpdateAccountForm(unittest.TestCase):
         self.app_context.push()
         db.init_app(self.app)
         db.create_all()
+        self.form = UpdateAccountForm()
+
+        # Mock current_user
+        self.patcher = patch('flask_ambrosial.users.forms.current_user', MagicMock(username="TestUser"))
+        self.mock_current_user = self.patcher.start()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
+        self.patcher.stop()
 
+    def test_fields_exist(self):
+        self.assertTrue(hasattr(self.form, 'username'))
+        self.assertTrue(hasattr(self.form, 'email'))
+        self.assertTrue(hasattr(self.form, 'picture'))
+        self.assertTrue(hasattr(self.form, 'submit'))
+
+    def test_valid_data(self):
+        form = UpdateAccountForm(username="TestUser", email="test@example.com")
+        self.assertTrue(form.validate())
+
+    def test_invalid_data(self):
+        form = UpdateAccountForm(username="", email="invalid")
+        self.assertFalse(form.validate())
 
 class TestRequestResetForm(unittest.TestCase):
     def setUp(self):
@@ -88,6 +121,13 @@ class TestRequestResetForm(unittest.TestCase):
         self.assertTrue(hasattr(self.form, 'email'))
         self.assertTrue(hasattr(self.form, 'submit'))
 
+    def test_valid_data(self):
+        form = RequestResetForm(email="test@example.com")
+        self.assertTrue(form.validate())
+
+    def test_invalid_data(self):
+        form = RequestResetForm(email="invalid")
+        self.assertFalse(form.validate())
 
 class TestResetPasswordForm(unittest.TestCase):
     def setUp(self):
