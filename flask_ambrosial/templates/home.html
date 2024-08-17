@@ -1,13 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <!-- Loop through each post in the posts.items list -->
     {% for post in posts.items %}
         <article class="media content-section">
+            <!-- Display the author's profile image -->
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
             <div class="media-body">
                 <div class="article-metadata">
+                    <!-- Link to the author's posts -->
                     <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                    <!-- Display the post date -->
                     <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                    <!-- Show update and delete buttons if the current user is the author -->
                     {% if post.author == current_user %}
                         <div>
                             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">{{ _('Update') }}</a>
@@ -15,12 +20,15 @@
                         </div>
                     {% endif %}
                 </div>
+                <!-- Link to the full post -->
                 <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
 
+                <!-- Display the post image if it exists -->
                 {% if post.image_filename %}
                     <img class="post-image" src="{{ url_for('static', filename='post_pics/' + post.image_filename) }}" alt="{{ post.title }}">
                 {% endif %}
 
+                <!-- Display a snippet of the post content -->
                 <p class="article-content">
                     {{ post.content.split(' ')[:20] | join(' ') }}...
                     <a href="#" class="read-more" data-full-content="{{ post.content }}">{{ _('Read more') }}</a>
@@ -50,13 +58,16 @@
 
                 <!-- Display Comments -->
                 <div class="comments-display" style="display: none;">
+                    <!-- Loop through each comment in the post.comments list -->
                     {% for comment in post.comments %}
                         <div class="media mb-4">
+                            <!-- Display the commenter's profile image -->
                             <img class="d-flex mr-3 rounded-circle" src="{{ url_for('static', filename='profile_pics/' + comment.author.image_file) }}" alt="">
                             <div class="media-body">
                                 <h5 class="mt-0">{{ comment.author.username }}</h5>
                                 {{ comment.content }}
                                 <div class="mt-2">
+                                    <!-- Show edit and delete buttons if the current user is the comment author -->
                                     {% if comment.author == current_user %}
                                         <button class="btn btn-link edit-comment-icon" style="font-size: 18px;" data-comment-id="{{ comment.id }}">✏️</button>
                                         <button class="btn btn-link delete-comment-icon" style="font-size: 18px;" data-comment-id="{{ comment.id }}">🗑️</button>
@@ -78,11 +89,13 @@
                                 <!-- Display Replies -->
                                 {% for reply in comment.replies %}
                                     <div class="media mt-4">
+                                        <!-- Display the replier's profile image -->
                                         <img class="d-flex mr-3 rounded-circle" src="{{ url_for('static', filename='profile_pics/' + reply.author.image_file) }}" alt="">
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ reply.author.username }}</h5>
                                             {{ reply.content }}
                                             <div class="mt-2">
+                                                <!-- Show edit and delete buttons if the current user is the reply author -->
                                                 {% if reply.author == current_user %}
                                                     <button class="btn btn-link edit-reply-icon" style="font-size: 18px;" data-reply-id="{{ reply.id }}">✏️</button>
                                                     <button class="btn btn-link delete-reply-icon" style="font-size: 18px;" data-reply-id="{{ reply.id }}">🗑️</button>
@@ -98,7 +111,7 @@
             </div>
         </article>
 
-        <!-- Modal -->
+        <!-- Modal for deleting a post -->
         <div class="modal fade" id="deleteModal-{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ post.id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -119,6 +132,7 @@
         </div>
     {% endfor %}
 
+    <!-- Pagination for posts -->
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
             {% if posts.page == page_num %}
@@ -131,5 +145,6 @@
 {% endblock content %}
 
 {% block scripts %}
+    <!-- Include JavaScript for handling comments -->
     <script src="{{ url_for('static', filename='js/home-comments.js') }}"></script>
 {% endblock scripts %}
