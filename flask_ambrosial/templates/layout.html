@@ -4,12 +4,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
     <!-- Link to custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    
     {% if title %}
         <!-- Title for the page, includes 'Ambrosial' and optional 'title' passed from Flask -->
         <title>{{ _('Ambrosial - ') }}{{ title }}</title>
@@ -23,22 +27,26 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
           <a class="navbar-brand mr-4" href="#">{{ _('Ambrosial') }}</a>
+          
           <!-- Responsive navbar toggler for mobile -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
           </button>
+          
           <!-- Navbar links -->
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{{ url_for('main.home') }}">{{ _('Home') }}</a>
               <a class="nav-item nav-link" href="{{ url_for('main.about') }}">{{ _('About') }}</a>
             </div>
+            
             <!-- Navbar Right Side, dynamic links based on user authentication -->
             <div class="navbar-nav ml-auto d-flex justify-content-end w-50">
                 {% if current_user.is_authenticated %}
                     <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">{{ _('New Post') }}</a>
                     <a class="nav-item nav-link" href="{{ url_for('users.account') }}">{{ _('Account') }}</a>
                     <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">{{ _('Logout') }}</a>
+                    
                     <!-- Chat icon link -->
                     <a class="nav-item nav-link" href="{{ url_for('chat.chat_room') }}">
                         <i class="fas fa-comments"></i> {{ _('Chat') }}
@@ -80,9 +88,11 @@
               {% endfor %}
             {% endif %}
           {% endwith %}
+          
           <!-- Content block, this part will be replaced by child templates -->
           {% block content %}{% endblock %}
         </div>
+        
         <!-- Sidebar on the right side -->
         <div class="col-md-4">
           <div class="content-section">
@@ -110,8 +120,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
     <!-- Fetch API data using JavaScript -->
     <script src="{{ url_for('static', filename='js/apis.js') }}"></script>
+    
     <!-- Scripts block for child templates -->
     {% block scripts %}{% endblock %}
 </body>
