@@ -1,25 +1,34 @@
 {% extends "layout.html" %}
 {% block content %}
+    <!-- Header displaying the username and total number of posts -->
     <h1 class="mb-3">{{ _('Post by') }} {{ user.username }} ({{ posts.total }})</h1>
+    
+    <!-- Loop through each post item -->
     {% for post in posts.items %}
         <article class="media content-section">
+            <!-- Author's profile picture -->
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
             <div class="media-body">
                 <div class="article-metadata">
+                    <!-- Author's username and post date -->
                     <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
                     <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
+                <!-- Post title -->
                 <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
 
-                <!-- Image rendering -->
+                <!-- Image rendering if available -->
                 {% if post.image_filename %}
                     <img class="post-image" src="{{ url_for('static', filename='post_pics/' + post.image_filename) }}" alt="{{ post.title }}">
                 {% endif %}
 
+                <!-- Post content -->
                 <p class="article-content">{{ post.content }}</p>
             </div>
         </article>
     {% endfor %}
+    
+    <!-- Pagination for navigating through pages of posts -->
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
             {% if posts.page == page_num %}
