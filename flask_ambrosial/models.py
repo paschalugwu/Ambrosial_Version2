@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Database models for User, Post, Comment, and Reaction entities."""
+"""
+Database models for User, Post, Comment, and Reaction entities.
+"""
 
 from time import time
 from flask import current_app
@@ -13,25 +15,60 @@ from sqlalchemy.orm import relationship
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+    Load a user by ID.
+
+    Args:
+        user_id (int): The ID of the user.
+
+    Returns:
+        User: The user object.
+    """
     return User.query.get(int(user_id))
 
 
 class User(db.Model, UserMixin):
+    """
+    User model for storing user-related data.
+    """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image_file = db.Column(
+        db.String(20), nullable=False, default='default.jpg'
+    )
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
     comments = db.relationship('Comment', backref='author', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
+        """
+        Generate a password reset token.
+
+        Args:
+            expires_sec (int): Expiration time in seconds.
+
+        Returns:
+            str: The reset token.
+        """
         s = Serializer(current_app.config['SECRET_KEY'])
         expires_at = time() + expires_sec
-        return s.dumps({'user_id': self.id, 'expires_at': expires_at}, salt='reset-password')
+        return s.dumps(
+            {'user_id': self.id, 'expires_at': expires_at}, 
+            salt='reset-password'
+        )
 
     @staticmethod
     def verify_reset_token(token):
+        """
+        Verify a password reset token.
+
+        Args:
+            token (str): The reset token.
+
+        Returns:
+            User: The user object if token is valid, None otherwise.
+        """
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
             data = s.loads(token, salt='reset-password')
@@ -42,15 +79,25 @@ class User(db.Model, UserMixin):
             return None
 
     def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+        return (
+            f"User('{self.username}', '{self.email}', '{self.image_file}')"
+        )
 
 
 class Post(db.Model):
+    """
+    Post model for storing blog post data.
+    """
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.now(timezone.utc))
+    date_posted = db.Column(
+        db.DateTime, nullable=False, default=datetime.now(timezone.utc)
+    )
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', name='fk_post_user_id'), nullable=False)
+    user_id = db.Column(
+        db.Integer, db.ForeignKey('user.id', name='fk_post_user_id'), 
+        nullable=False
+    )
     image_filename = db.Column(db.String(100), nullable=False)
     comments = db.relationship('Comment', backref='post', lazy=True)
 
@@ -59,22 +106,38 @@ class Post(db.Model):
 
 
 class Comment(db.Model):
+    """
+    Comment model for storing comments on posts.
+    """
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date_posted = db.Column(
+        db.DateTime, nullable=False, default=datetime.utcnow
+    )
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
-    parent_id = db.Column(db.Integer, db.ForeignKey('comment.id'), nullable=True)
-    replies = db.relationship('Comment', backref=db.backref('parent', remote_side=[id]), lazy=True, cascade="all, delete-orphan")
+    parent_id = db.Column(
+        db.Integer, db.ForeignKey('comment.id'), nullable=True
+    )
+    replies = db.relationship(
+        'Comment', backref=db.backref('parent', remote_side=[id]), 
+        lazy=True, cascade="all, delete-orphan"
+    )
 
     def __repr__(self):
         return f"Comment('{self.content}', '{self.date_posted}')"
 
+
 class ChatMessage(db.Model):
+    """
+    ChatMessage model for storing chat messages.
+    """
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(500))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+    timestamp = db.Column(
+        db.DateTime, default=db.func.current_timestamp()
+    )
     user = db.relationship('User', backref='messages')
 
     def __repr__(self):
