@@ -50,6 +50,9 @@ def new_post():
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('posts.home'))
+    else:
+        print("Form validation failed")
+        print(form.errors)
     return render_template(
         'create_post.html', title='New Post', form=form, legend='New Post'
     )

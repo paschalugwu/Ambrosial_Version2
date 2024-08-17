@@ -5,6 +5,7 @@ Unit tests for Flask routes in the Flask Ambrosial application.
 """
 
 import unittest
+from io import BytesIO
 from flask import url_for
 from flask_ambrosial import create_app, db
 from flask_ambrosial.models import User, Post, Comment
@@ -55,11 +56,12 @@ class PostRoutesTestCase(unittest.TestCase):
                 data={
                     'title': 'Test Post',
                     'content': 'This is a test post.',
-                    'image_filename': 'default.jpg'
+                    'image_filename': (BytesIO(b"fake image data"), 'test.jpg')
                 },
                 follow_redirects=True
             )
-        self.assertEqual(response.status_code, 200)
+        if b'Your post has been created!' not in response.data:
+            print(response.data)
         self.assertIn(b'Your post has been created!', response.data)
 
     def test_post(self):
