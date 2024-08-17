@@ -1,18 +1,18 @@
-{% extends "layout.html" %}
-{% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">{{ _(legend) }}</legend>
-                <div class="form-group">
-                    {{ form.content.label(class="form-control-label") }}
-                    {{ form.content(class="form-control form-control-lg") }}
+{% extends "layout.html" %}  <!-- Extend the base layout template -->
+{% block content %}  <!-- Define the content block to be inserted into the base layout -->
+    <div class="content-section">  <!-- Container for the form section -->
+        <form method="POST">  <!-- Form submission using POST method -->
+            {{ form.hidden_tag() }}  <!-- CSRF token for security -->
+            <fieldset class="form-group">  <!-- Group related form elements -->
+                <legend class="border-bottom mb-4">{{ _(legend) }}</legend>  <!-- Form legend with translation support -->
+                <div class="form-group">  <!-- Container for form input -->
+                    {{ form.content.label(class="form-control-label") }}  <!-- Label for the content field -->
+                    {{ form.content(class="form-control form-control-lg") }}  <!-- Content input field with styling -->
                 </div>
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">{{ _('Update') }}</button>
+            <div class="form-group">  <!-- Container for the submit button -->
+                <button class="btn btn-outline-info" type="submit">{{ _('Update') }}</button>  <!-- Submit button with translation support -->
             </div>
         </form>
     </div>
-{% endblock content %}
+{% endblock content %}  <!-- End of content block -->
