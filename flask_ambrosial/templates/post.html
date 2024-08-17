@@ -1,24 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
+    <!-- Article section displaying the post -->
     <article class="media content-section">
+        <!-- Author's profile picture -->
         <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
         <div class="media-body">
             <div class="article-metadata">
+                <!-- Author's username and post date -->
                 <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
                 <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                 {% if post.author == current_user %}
+                    <!-- Update and Delete buttons for the post author -->
                     <div>
                         <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">{{ _('Update') }}</a>
                         <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal-{{ post.id }}">{{ _('Delete') }}</button>
                     </div>
                 {% endif %}
             </div>
+            <!-- Post title -->
             <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
 
             {% if post.image_filename %}
+                <!-- Post image if available -->
                 <img src="{{ url_for('static', filename='post_pics/' + post.image_filename) }}" alt="{{ post.title }}" style="max-width: 100%; height: auto; border: none;">
             {% endif %}
 
+            <!-- Post content preview with 'Read more' link -->
             <p class="article-content">
                 {{ post.content.split(' ')[:20] | join(' ') }}...
                 <a href="#" class="read-more" data-full-content="{{ post.content }}">{{ _('Read more') }}</a>
@@ -50,6 +57,7 @@
     <!-- Display Comments -->
     <div class="comments-display" style="display: none;">
         {% for comment in post.comments %}
+            <!-- Individual comment -->
             <div class="media mb-4">
                 <img class="d-flex mr-3 rounded-circle" src="{{ url_for('static', filename='profile_pics/' + comment.author.image_file) }}" alt="">
                 <div class="media-body">
@@ -57,10 +65,12 @@
                     {{ comment.content }}
                     <div class="mt-2">
                         {% if comment.author == current_user %}
+                            <!-- Edit and Delete icons for comment author -->
                             <button class="btn btn-link edit-comment-icon" style="font-size: 18px;" data-comment-id="{{ comment.id }}">✏️</button>
                             <button class="btn btn-link delete-comment-icon" style="font-size: 18px;" data-comment-id="{{ comment.id }}">🗑️</button>
                         {% endif %}
                         <span class="icon reply-icon">↩️</span>
+                        <!-- Reply form -->
                         <div class="reply-form" style="display: none;">
                             <form action="{{ url_for('posts.add_comment') }}" method="POST">
                                 {{ reply_form.hidden_tag() }}
@@ -83,6 +93,7 @@
                                 {{ reply.content }}
                                 <div class="mt-2">
                                     {% if reply.author == current_user %}
+                                        <!-- Edit and Delete icons for reply author -->
                                         <button class="btn btn-link edit-reply-icon" style="font-size: 18px;" data-reply-id="{{ reply.id }}">✏️</button>
                                         <button class="btn btn-link delete-reply-icon" style="font-size: 18px;" data-reply-id="{{ reply.id }}">🗑️</button>
                                     {% endif %}
@@ -95,7 +106,7 @@
         {% endfor %}
     </div>
 
-    <!-- Modal -->
+    <!-- Modal for post deletion confirmation -->
     <div class="modal fade" id="deleteModal-{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ post.id }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -115,6 +126,7 @@
         </div>
     </div>
 
+    <!-- JavaScript for handling post comments -->
     <script>
         const postId = "{{ post.id }}";
     </script>
