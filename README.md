@@ -1,4 +1,4 @@
-[200~# Ambrosial
+# Ambrosial
 
 ## Overview
 
