@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-
-# test_models.py
+"""
+Unit tests for the models in the flask_ambrosial module.
+"""
 
 import unittest
 from flask import current_app
@@ -10,19 +11,35 @@ from flask_ambrosial.config import TestingConfig
 from datetime import datetime, timezone
 
 class ModelTestCase(unittest.TestCase):
+    """
+    Test case for the models in the flask_ambrosial module.
+    """
+
     def setUp(self):
+        """
+        Set up a test client and application context before each test.
+        """
         self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
         db.create_all()
 
     def tearDown(self):
+        """
+        Clean up after each test.
+        """
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
 
     def test_user_creation(self):
-        user = User(username='testuser', email='test@example.com', password='password')
+        """
+        Test if a user can be created correctly.
+        """
+        user = User(
+            username='testuser', email='test@example.com',
+            password='password'
+        )
         db.session.add(user)
         db.session.commit()
         self.assertEqual(User.query.count(), 1)
@@ -30,7 +47,13 @@ class ModelTestCase(unittest.TestCase):
         self.assertEqual(user.email, 'test@example.com')
 
     def test_get_reset_token(self):
-        user = User(username='testuser', email='test@example.com', password='password')
+        """
+        Test if a reset token can be generated and verified.
+        """
+        user = User(
+            username='testuser', email='test@example.com',
+            password='password'
+        )
         db.session.add(user)
         db.session.commit()
         token = user.get_reset_token()
@@ -39,10 +62,19 @@ class ModelTestCase(unittest.TestCase):
         self.assertEqual(user, verified_user)
 
     def test_post_creation(self):
-        user = User(username='testuser', email='test@example.com', password='password')
+        """
+        Test if a post can be created correctly.
+        """
+        user = User(
+            username='testuser', email='test@example.com',
+            password='password'
+        )
         db.session.add(user)
         db.session.commit()
-        post = Post(title='Test Post', content='This is a test post.', author=user, image_filename='test.jpg')
+        post = Post(
+            title='Test Post', content='This is a test post.',
+            author=user, image_filename='test.jpg'
+        )
         db.session.add(post)
         db.session.commit()
         self.assertEqual(Post.query.count(), 1)
@@ -50,13 +82,24 @@ class ModelTestCase(unittest.TestCase):
         self.assertEqual(post.author, user)
 
     def test_comment_creation(self):
-        user = User(username='testuser', email='test@example.com', password='password')
+        """
+        Test if a comment can be created correctly.
+        """
+        user = User(
+            username='testuser', email='test@example.com',
+            password='password'
+        )
         db.session.add(user)
         db.session.commit()
-        post = Post(title='Test Post', content='This is a test post.', author=user, image_filename='test.jpg')
+        post = Post(
+            title='Test Post', content='This is a test post.',
+            author=user, image_filename='test.jpg'
+        )
         db.session.add(post)
         db.session.commit()
-        comment = Comment(content='This is a test comment.', author=user, post=post)
+        comment = Comment(
+            content='This is a test comment.', author=user, post=post
+        )
         db.session.add(comment)
         db.session.commit()
         self.assertEqual(Comment.query.count(), 1)
@@ -65,16 +108,30 @@ class ModelTestCase(unittest.TestCase):
         self.assertEqual(comment.post, post)
 
     def test_comment_replies(self):
-        user = User(username='testuser', email='test@example.com', password='password')
+        """
+        Test if replies to comments can be created correctly.
+        """
+        user = User(
+            username='testuser', email='test@example.com',
+            password='password'
+        )
         db.session.add(user)
         db.session.commit()
-        post = Post(title='Test Post', content='This is a test post.', author=user, image_filename='test.jpg')
+        post = Post(
+            title='Test Post', content='This is a test post.',
+            author=user, image_filename='test.jpg'
+        )
         db.session.add(post)
         db.session.commit()
-        comment = Comment(content='This is a test comment.', author=user, post=post)
+        comment = Comment(
+            content='This is a test comment.', author=user, post=post
+        )
         db.session.add(comment)
         db.session.commit()
-        reply = Comment(content='This is a test reply.', author=user, post=post, parent=comment)
+        reply = Comment(
+            content='This is a test reply.', author=user, post=post,
+            parent=comment
+        )
         db.session.add(reply)
         db.session.commit()
         self.assertEqual(Comment.query.count(), 2)
@@ -82,10 +139,18 @@ class ModelTestCase(unittest.TestCase):
         self.assertIn(reply, comment.replies)
 
     def test_chat_message_creation(self):
-        user = User(username='testuser', email='test@example.com', password='password')
+        """
+        Test if a chat message can be created correctly.
+        """
+        user = User(
+            username='testuser', email='test@example.com',
+            password='password'
+        )
         db.session.add(user)
         db.session.commit()
-        message = ChatMessage(content='This is a test message.', user=user)
+        message = ChatMessage(
+            content='This is a test message.', user=user
+        )
         db.session.add(message)
         db.session.commit()
         self.assertEqual(ChatMessage.query.count(), 1)
