@@ -5,17 +5,14 @@ from flask_ambrosial.users.forms import RegistrationForm, LoginForm, UpdateAccou
 from flask_ambrosial.posts.forms import CommentForm, ReplyForm
 from unittest.mock import patch, MagicMock
 from flask_ambrosial.config import TestingConfig
-
-# Initialize SQLAlchemy
-db = SQLAlchemy()
+from flask_ambrosial import create_app, db
+from flask_ambrosial.models import User  # Import the User model
 
 class TestRegistrationForm(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.config.from_object(TestingConfig)
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.init_app(self.app)
         db.create_all()
         self.form = RegistrationForm()
 
@@ -41,11 +38,9 @@ class TestRegistrationForm(unittest.TestCase):
 
 class TestLoginForm(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.config.from_object(TestingConfig)
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.init_app(self.app)
         db.create_all()
         self.form = LoginForm()
 
@@ -70,11 +65,9 @@ class TestLoginForm(unittest.TestCase):
 
 class TestUpdateAccountForm(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.config.from_object(TestingConfig)
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.init_app(self.app)
         db.create_all()
         self.form = UpdateAccountForm()
 
@@ -104,12 +97,16 @@ class TestUpdateAccountForm(unittest.TestCase):
 
 class TestRequestResetForm(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.config.from_object(TestingConfig)
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.init_app(self.app)
         db.create_all()
+        
+        # Create a user with the email test@example.com
+        user = User(username='testuser', email='test@example.com', password='password')
+        db.session.add(user)
+        db.session.commit()
+        
         self.form = RequestResetForm()
 
     def tearDown(self):
@@ -123,6 +120,8 @@ class TestRequestResetForm(unittest.TestCase):
 
     def test_valid_data(self):
         form = RequestResetForm(email="test@example.com")
+        if not form.validate():
+            print(form.errors)
         self.assertTrue(form.validate())
 
     def test_invalid_data(self):
@@ -131,11 +130,9 @@ class TestRequestResetForm(unittest.TestCase):
 
 class TestResetPasswordForm(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.config.from_object(TestingConfig)
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.init_app(self.app)
         db.create_all()
         self.form = ResetPasswordForm()
 
@@ -159,11 +156,9 @@ class TestResetPasswordForm(unittest.TestCase):
 
 class TestCommentForm(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.config.from_object(TestingConfig)
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.init_app(self.app)
         db.create_all()
         self.form = CommentForm()
 
@@ -186,11 +181,9 @@ class TestCommentForm(unittest.TestCase):
 
 class TestReplyForm(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.config.from_object(TestingConfig)
+        self.app = create_app(TestingConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.init_app(self.app)
         db.create_all()
         self.form = ReplyForm()
 
