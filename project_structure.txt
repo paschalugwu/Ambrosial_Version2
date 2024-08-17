@@ -1,16 +1,16 @@
 .
 ├── AUTHORS.md
 ├── README.md
-├── TOOLS.md
 ├── flask_ambrosial
-│   ├── README.md
 │   ├── __init__.py
 │   ├── apis
+│   │   ├── __init__.py
 │   │   ├── api_routes.py
 │   │   └── tests
 │   │       └── test_api_routes.py
 │   ├── babel.cfg
 │   ├── chats
+│   │   ├── __init__.py
 │   │   ├── routes.py
 │   │   └── tests
 │   │       └── test_routes.py
@@ -42,13 +42,9 @@
 │   │   │   └── post-comments.js
 │   │   ├── main.css
 │   │   ├── post_pics
-│   │   │   ├── 0414ed28980a6afb.jpg
-│   │   │   ├── 122c7cefe5f3fa13.jpg
-│   │   │   ├── 186916cde40e72ce.jpg
-│   │   │   └── f64d8aab113b14aa.jpg
+│   │   │
 │   │   └── profile_pics
-│   │       ├── 07b6654c16837071.jpg
-│   │       └── default.jpg
+│   │
 │   ├── templates
 │   │   ├── about.html
 │   │   ├── account.html
@@ -68,6 +64,7 @@
 │   │   ├── reset_token.html
 │   │   └── user_posts.html
 │   ├── tests
+│   │   ├── __init__.py
 │   │   ├── test_config.py
 │   │   ├── test_init.py
 │   │   └── test_models.py
@@ -98,21 +95,10 @@
 │       │   └── test_utils.py
 │       └── utils.py
 ├── instance
-│   └── site.db
-├── migrations
-│   ├── README
-│   ├── alembic.ini
-│   ├── env.py
-│   ├── script.py.mako
-│   └── versions
-│       ├── 46a9f62e3a58_remove_reaction_model.py
-│       ├── 65a1a83e7d72_create_reply_table.py
-│       ├── ba1b110f5166_initial_migration.py
-│       ├── c54b9caea067_create_reaction_table.py
-│       ├── cc74f4bb722a_create_comment_table.py
-│       └── d218bbee1d87_add_parent_id_column_to_comment_table.py
+│   ├── site.db
+│   └── test.db
 ├── package-lock.json
 ├── package.json
 ├── requirements.txt
 ├── run.py
-└── tree_output_20240815_025056.txt
+└── project_structure.txt

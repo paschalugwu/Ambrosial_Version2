@@ -9,7 +9,7 @@ class PostForm(FlaskForm):
     """Form for creating a new post."""
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
-    image_filename = FileField('Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    image_filename = FileField('Image', validators=[DataRequired(), FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')
 
 class CommentForm(FlaskForm):
