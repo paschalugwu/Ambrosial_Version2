@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const viewCommentsIcons = document.querySelectorAll('.view-comments-icon');
     // Select all elements with the class 'read-more'
     const readMoreLinks = document.querySelectorAll('.read-more');
+    // Select the "Back to Top" button
+    const backToTopButton = document.getElementById('back-to-top');
 
     // Toggle the display of the comment form when the add comment icon is clicked
     addCommentIcons.forEach(icon => {
@@ -103,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 event.preventDefault();
                 const fullContent = this.getAttribute('data-full-content');
                 const articleContent = this.closest('.article-content');
-                const scrollPosition = window.scrollY; // Save the current scroll position
                 if (this.textContent === 'Read more') {
                     articleContent.innerHTML = fullContent + 
                         ' <a href="#" class="read-more" data-full-content="' + 
@@ -114,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         '... <a href="#" class="read-more" data-full-content="' + 
                         fullContent + '">Read more</a>';
                 }
-                window.scrollTo(0, scrollPosition); // Restore the scroll position
                 addReadMoreEventListeners();
             });
         });
@@ -122,4 +122,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize 'read more' event listeners
     addReadMoreEventListeners();
+
+    // Show the "Back to Top" button when scrolled to the bottom
+    window.onscroll = function() {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    };
+
+    // Scroll to the top when the "Back to Top" button is clicked
+    backToTopButton.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 });
