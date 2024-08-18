@@ -73,7 +73,6 @@ sniffio
 SQLAlchemy
 tomli
 typing_extensions
-ufw
 unattended-upgrades
 wadllib
 Werkzeug
