@@ -56,11 +56,9 @@ pip
 pluggy
 polib
 pycodestyle
-PyGObject
 PyJWT
 pyparsing
 pytest
-python-apt
 python-dotenv
 python-engineio
 python-socketio
