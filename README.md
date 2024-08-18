@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Ambrosial** is a Flask-based web application designed to manage user accounts, posts, and messaging. It features user authentication, profile management, and a robust system for creating and managing posts. The application supports multiple languages and includes error handling, user authentication, and various utilities to enhance the user experience.
+**Ambrosial** is a Flask-based web application designed to manage user accounts, posts, and messaging. The application is deployed and can be accessed at [https://ambrosial-webapp.vercel.app/](https://ambrosial-webapp.vercel.app/). It features user authentication, profile management, and a robust system for creating and managing posts. The application supports multiple languages and includes error handling, user authentication, and various utilities to enhance the user experience.
 
 ## Installation
 
@@ -58,13 +58,17 @@ To set up the Ambrosial project on your local machine, follow these steps:
 
 ## Usage
 
-Once the application is running, you can access it via `http://127.0.0.1:5000/`. Here are some common use cases:
+Once the application is running, you can access it via the deployed web app:
 
-- **Register a New Account:** Navigate to `/register` to create a new user account.
-- **Log In:** Use the `/login` route to access your account.
-- **Create a Post:** Visit `/create_post` to add a new post.
-- **View Posts:** Go to `/post/<post_id>` to see individual posts.
-- **Manage Account:** Access `/account` to update your profile information.
+**Production URL:** [https://ambrosial-webapp.vercel.app/](https://ambrosial-webapp.vercel.app/)
+
+Here are some common use cases:
+
+- **Register a New Account:** Navigate to `https://ambrosial-webapp.vercel.app//register` to create a new user account.
+- **Log In:** Use the `https://ambrosial-webapp.vercel.app//login` route to access your account.
+- **Create a Post:** Visit `https://ambrosial-webapp.vercel.app//create_post` to add a new post.
+- **View Posts:** Go to `https://ambrosial-webapp.vercel.app//post/<post_id>` to see individual posts.
+- **Manage Account:** Access `https://ambrosial-webapp.vercel.app//account` to update your profile information.
 
 ## Project Structure
 
