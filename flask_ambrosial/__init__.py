@@ -27,6 +27,7 @@ mail = Mail()
 migrate = Migrate()
 socketio = SocketIO(
     cors_allowed_origins=[
+        "https://ambrosial-webapp.vercel.app",
         "http://localhost:5000",
         "https://localhost:5000",
         "http://127.0.0.1:5000"
