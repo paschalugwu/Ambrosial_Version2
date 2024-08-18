@@ -155,7 +155,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgements
 
-[200~- **Flask**: The core framework used for building the web application.
+- **Flask**: The core framework used for building the web application.
 - **Flask-Babel**: Provides internationalization and localization.
 - **Flask-Login**: Manages user sessions.
 - **Flask-SQLAlchemy**: Provides SQLAlchemy integration for Flask.
