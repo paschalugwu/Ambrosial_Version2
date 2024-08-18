@@ -7,7 +7,6 @@ certifi
 chardet
 click
 cryptography
-dbus-python
 distro
 distro-info
 dnspython
