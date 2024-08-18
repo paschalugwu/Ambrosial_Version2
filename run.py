@@ -2,8 +2,12 @@
 """Entry point for running the Flask application."""
 
 from flask_ambrosial import create_app, socketio
+from flask_cors import CORS
 
 app = create_app(use_socketio=True)
+
+# Allow requests from specific origins
+CORS(app, resources={r"/*": {"origins": "https://ambrosial-webapp.vercel.app"}})
 
 if __name__ == '__main__':
     # Run the Flask application with SocketIO
