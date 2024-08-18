@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 event.preventDefault();
                 const fullContent = this.getAttribute('data-full-content');
                 const articleContent = this.closest('.article-content');
+                const scrollPosition = window.scrollY; // Save the current scroll position
                 if (this.textContent === 'Read more') {
                     articleContent.innerHTML = fullContent + 
                         ' <a href="#" class="read-more" data-full-content="' + 
@@ -113,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         '... <a href="#" class="read-more" data-full-content="' + 
                         fullContent + '">Read more</a>';
                 }
+                window.scrollTo(0, scrollPosition); // Restore the scroll position
                 addReadMoreEventListeners();
             });
         });
