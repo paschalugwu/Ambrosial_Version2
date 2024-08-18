@@ -10,3 +10,4 @@ flask_babel
 eventlet
 flask_wtf
 pillow
+email-validator
