@@ -115,4 +115,12 @@ def create_app(config_class=Config, use_socketio=False):
         """
         return dict(_=gettext, get_locale=get_locale)
 
+    @app.before_request
+    def log_session():
+        """
+        Log session details for debugging.
+        """
+        logging.debug(f"Session ID: {session.sid if 'sid' in session else 'No session ID'}")
+        logging.debug(f"Session contents: {session.items()}")
+
     return app
