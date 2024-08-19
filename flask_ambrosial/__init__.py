@@ -17,6 +17,11 @@ from flask_babel import Babel, lazy_gettext as _l, gettext
 
 from flask_ambrosial.config import Config, TestingConfig
 
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+
 # Initialize Flask extensions
 db = SQLAlchemy()
 bcrypt = Bcrypt()
