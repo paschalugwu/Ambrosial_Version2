@@ -5,6 +5,7 @@ This module initializes the Flask application with various extensions
 and configurations.
 """
 
+import logging
 from flask import Flask, redirect, request, session, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -16,8 +17,6 @@ from flask_cors import CORS
 from flask_babel import Babel, lazy_gettext as _l, gettext
 
 from flask_ambrosial.config import Config, TestingConfig
-
-import logging
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -106,6 +105,7 @@ def create_app(config_class=Config, use_socketio=False):
         """
         lang = request.args.get('lang', 'en')
         session['lang'] = lang
+        logging.debug(f"Language set to: {lang}")
         return redirect('/')
 
     @app.context_processor
