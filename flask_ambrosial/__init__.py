@@ -11,6 +11,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
+from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_babel import Babel, lazy_gettext as _l, gettext
 
@@ -24,6 +25,15 @@ login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 mail = Mail()
 migrate = Migrate()
+socketio = SocketIO(
+    cors_allowed_origins=[
+        "https://ambrosial-webapp.vercel.app",
+        "http://localhost:5000",
+        "https://localhost:5000",
+        "http://127.0.0.1:5000"
+    ],
+    async_mode='eventlet'
+)
 babel = Babel()
 
 def get_locale():
@@ -40,12 +50,13 @@ def get_locale():
         request.accept_languages.best_match(current_app.config['LANGUAGES'])
     )
 
-def create_app(config_class=Config):
+def create_app(config_class=Config, use_socketio=False):
     """
     Create and configure the Flask application.
 
     Args:
         config_class (class): The configuration class to use.
+        use_socketio (bool): Whether to use SocketIO.
 
     Returns:
         Flask: The configured Flask application.
@@ -64,6 +75,9 @@ def create_app(config_class=Config):
     mail.init_app(app)
     migrate.init_app(app, db)
     babel.init_app(app, locale_selector=get_locale)
+
+    if use_socketio:
+        socketio.init_app(app, async_mode='eventlet')
 
     # Register blueprints
     from flask_ambrosial.users.routes import users
