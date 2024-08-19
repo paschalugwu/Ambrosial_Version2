@@ -2,6 +2,8 @@
 """Entry point for running the Flask application."""
 
 from flask_ambrosial import create_app, socketio
+import eventlet
+eventlet.monkey_patch()
 
 app = create_app(use_socketio=True)
 
