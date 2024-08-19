@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """Entry point for running the Flask application."""
 
-import eventlet
-eventlet.monkey_patch()
-
 from flask_ambrosial import create_app, socketio
 
 app = create_app(use_socketio=True)

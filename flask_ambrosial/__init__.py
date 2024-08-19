@@ -5,7 +5,6 @@ This module initializes the Flask application with various extensions
 and configurations.
 """
 
-import logging
 from flask import Flask, redirect, request, session, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -17,9 +16,6 @@ from flask_cors import CORS
 from flask_babel import Babel, lazy_gettext as _l, gettext
 
 from flask_ambrosial.config import Config, TestingConfig
-
-# Configure logging
-logging.basicConfig(level=logging.DEBUG)
 
 # Initialize Flask extensions
 db = SQLAlchemy()
@@ -105,7 +101,6 @@ def create_app(config_class=Config, use_socketio=False):
         """
         lang = request.args.get('lang', 'en')
         session['lang'] = lang
-        logging.debug(f"Language set to: {lang}")
         return redirect('/')
 
     @app.context_processor
@@ -114,13 +109,5 @@ def create_app(config_class=Config, use_socketio=False):
         Inject Babel functions into the template context.
         """
         return dict(_=gettext, get_locale=get_locale)
-
-    @app.before_request
-    def log_session():
-        """
-        Log session details for debugging.
-        """
-        logging.debug(f"Session ID: {session.sid if 'sid' in session else 'No session ID'}")
-        logging.debug(f"Session contents: {session.items()}")
 
     return app
