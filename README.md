@@ -58,9 +58,9 @@ To set up the Ambrosial project on your local machine, follow these steps:
 
 ## Usage
 
-Once the application is running, you can access it via the deployed web app:
+Once the application is running, you can access it via:
 
-**Production URL:** [http://127.0.0.1:5000](http://127.0.0.1:5000)
+**Local Host URL:** [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 Here are some common use cases:
 
