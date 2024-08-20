@@ -60,15 +60,15 @@ To set up the Ambrosial project on your local machine, follow these steps:
 
 Once the application is running, you can access it via the deployed web app:
 
-**Production URL:** [https://ambrosial-webapp.vercel.app/](https://ambrosial-webapp.vercel.app/)
+**Production URL:** [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 Here are some common use cases:
 
-- **Register a New Account:** Navigate to `https://ambrosial-webapp.vercel.app//register` to create a new user account.
-- **Log In:** Use the `https://ambrosial-webapp.vercel.app//login` route to access your account.
-- **Create a Post:** Visit `https://ambrosial-webapp.vercel.app//create_post` to add a new post.
-- **View Posts:** Go to `https://ambrosial-webapp.vercel.app//post/<post_id>` to see individual posts.
-- **Manage Account:** Access `https://ambrosial-webapp.vercel.app//account` to update your profile information.
+- **Register a New Account:** Navigate to `http://127.0.0.1:5000//register` to create a new user account.
+- **Log In:** Use the `http://127.0.0.1:5000//login` route to access your account.
+- **Create a Post:** Visit `http://127.0.0.1:5000//create_post` to add a new post.
+- **View Posts:** Go to `http://127.0.0.1:5000//post/<post_id>` to see individual posts.
+- **Manage Account:** Access `http://127.0.0.1:5000//account` to update your profile information.
 
 ## Project Structure
 
