@@ -155,7 +155,7 @@ Please ensure that your code follows the project's coding standards and includes
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. Please take a look at the [LICENSE](LICENSE) file for more details.
 
 ## Acknowledgements
 
