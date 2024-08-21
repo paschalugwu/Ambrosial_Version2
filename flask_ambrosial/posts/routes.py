@@ -123,14 +123,22 @@ def update_post(post_id):
 @login_required
 def delete_post(post_id):
     """
-    Delete an existing post.
+    Delete an existing post along with its associated comments.
     """
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
+    
+    # Delete all comments associated with the post
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    for comment in comments:
+        db.session.delete(comment)
+    
+    # Delete the post
     db.session.delete(post)
     db.session.commit()
-    flash('Your post has been deleted', 'success')
+    
+    flash('Your post and all associated comments have been deleted', 'success')
     return redirect(url_for('posts.home'))
 
 @posts.route("/comments", methods=['POST'])
